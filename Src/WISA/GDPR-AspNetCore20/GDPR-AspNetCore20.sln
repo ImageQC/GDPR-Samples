@@ -3,11 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDPRCore20WebApp", "GDPRCore20WebApp\GDPRCore20WebApp.csproj", "{399875CA-D78D-454D-A7CF-D50AF11400B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GDPRCore20WebApp", "GDPRCore20WebApp\GDPRCore20WebApp.csproj", "{399875CA-D78D-454D-A7CF-D50AF11400B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F3A69AF8-AD3A-4A11-B03E-85E195222AF2}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\Docs\Index.txt = ..\..\..\Docs\Index.txt
+		..\..\..\README.md = ..\..\..\README.md
 	EndProjectSection
 EndProject
 Global
