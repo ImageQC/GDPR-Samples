@@ -1,0 +1,39 @@
+﻿@using GDPRCore20WebApp.Filters
+@{
+    ViewData["Title"] = "Cookies";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>AskCookieConsent: @(ViewBag.AskCookieConsent)</p>   
+<p>HasCookieConsent: @(ViewBag.HasCookieConsent)</p> 
+<p>CookieConsentFound: @(ViewBag.CookieConsentFound)</p> 
+    
+<hr />
+    
+<form asp-action="RevokeConsentCookie">
+     <div class="form-horizontal" id="LoadedDiv" style="display:block;">
+        <div class="form-group" >
+            <label class="col-md-2 control-label">Name of Consent Cookie</label>
+            <div class="col-md-4">
+                <input value=@CookieConsentAttribute.CONSENT_COOKIE_NAME readonly />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Revoke" class="btn btn-default" />
+            </div>
+        </div>
+     </div>
+</form>
+
+
+<a asp-controller="Home" asp-action="Index">Back to Home</a>
+
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

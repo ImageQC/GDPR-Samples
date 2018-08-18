@@ -13,9 +13,11 @@ using Microsoft.Extensions.Options;
 using GDPRCore20WebApp.Models;
 using GDPRCore20WebApp.Models.AccountViewModels;
 using GDPRCore20WebApp.Services;
+using GDPRCore20WebApp.Filters;
 
 namespace GDPRCore20WebApp.Controllers
 {
+    [CookieConsent]
     [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller

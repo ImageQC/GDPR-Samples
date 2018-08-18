@@ -1,0 +1,14 @@
+﻿
+@using Microsoft.AspNetCore.Http.Features;
+
+<div id="cookie-alert">
+    <div class="alert">
+        <p><strong>Cookies:</strong> please allow us to use&nbsp;<a asp-controller="Home" asp-action="Cookies" >Cookies</a></p>
+        <form class="btn-group-vertical" action="@Url.Action("NoCookies", "Site", new { returnUrl = Context?.Request?.HttpContext?.Features?.Get<IHttpRequestFeature>()?.RawTarget})" method="post"  >
+            <input type="submit" name="decline" class="btn btn-warning" value="Decline" />
+        </form>
+        <form class="btn-group-vertical" action="@Url.Action("AllowCookies", "Site", new { returnUrl = Context?.Request?.HttpContext?.Features?.Get<IHttpRequestFeature>()?.RawTarget})" method="post">
+            <input type="submit" name="allow" class="btn btn-success" value="Allow" />
+        </form>
+    </div>
+</div>

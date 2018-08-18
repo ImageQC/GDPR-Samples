@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -9,13 +8,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using GDPRCore20WebApp.Models;
 using GDPRCore20WebApp.Models.ManageViewModels;
 using GDPRCore20WebApp.Services;
+using GDPRCore20WebApp.Filters;
 
 namespace GDPRCore20WebApp.Controllers
 {
+    [CookieConsent]
     [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller

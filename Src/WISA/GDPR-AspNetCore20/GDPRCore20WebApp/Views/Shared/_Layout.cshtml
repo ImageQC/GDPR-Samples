@@ -33,16 +33,25 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Cookies">Cookies</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
+
+   <div class="container">
+	    @if (GDPRCore20WebApp.Services.CookieConsent.AskCookieConsent(ViewContext))
+	    {
+	    @Html.Partial("_CookieConsentMessage")
+	    }
+    </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - GDPRCore20WebApp</p>
+            <p>&copy; Will Stott 2018 - GDPRCore20WebApp v1.0.0.0 - <a href="https://github.com/wpqs/GDPR-Samples" target="_blank">https://github.com/wpqs/GDPR-Samples</a></p>
         </footer>
     </div>
 

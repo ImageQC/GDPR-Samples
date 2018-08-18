@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Test param passing";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p class="@ViewBag.MsgType">@ViewData["StatusMessage"]</p>
+<hr />
+<br />
+
+<p>https://localhost:44303/Home/Test?id=@ViewBag.MyParamValue</p>
+
+<hr />
+<a asp-controller="Home" asp-action="Index">Back to Home</a>
+
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
