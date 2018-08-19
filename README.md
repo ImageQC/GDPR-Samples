@@ -1,5 +1,5 @@
 # GDPR-Samples
-##Sample implementations for GDPR for various technology stacks
+## Sample implementations for GDPR for various technology stacks
 
 The European Union (EU) [General Data Protection Regulations](https://gdpr-info.eu) (GDPR) apply to almost everyone developing or operating a website used by people in the EU. If you
 are selling good or services from such a website then these regulations apply even if you're not located in the EU. The fines for flouting the regulations can be 
@@ -17,11 +17,11 @@ authorities (regulators), lawyers with expertise in GDPR, trade bodies developin
 biulding websites using technology stacks that are not currently supported.
 
 
-###News
+### News
 
 * 19 Aug 18 - WISA Core 2.0 MVC v 1.0.0 baseline release (with cookie support), headline requirements and functional specifications
 
-###Supported Stacks
+### Supported Stacks
 
 * WISA Core 2.0 MVC - Windows, IIS, SQL Server, ASP.Net Core 2.0 MVC - https://github.com/wpqs/GDPR-Samples/tree/master/Src/WISA/GDPR-AspNetCore20
 
