@@ -1,2 +1,4 @@
 Index of Documents for GDPR-Samples Project
 -------------------------------------------
+
+README.md - information displayed on GitHub home: introduction, news, etc
