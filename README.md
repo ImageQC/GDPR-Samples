@@ -9,7 +9,7 @@ This project aims to help micro and small development shops building websites co
 larger organisations by helping to define the requirements for GDPR, providing reference implementations on a variety of technology stacks, and providing a forum for 
 discussion. 
 
-The best place to start is the project's [wiki](https://github.com/wpqs/GDPR-Samples/wiki) where you'll find documentation about GDPR requirements and how they might be implemented 
+** The best place to start is the project's [wiki](https://github.com/wpqs/GDPR-Samples/wiki) ** where you'll find documentation about GDPR requirements and how they might be implemented 
 togther with links to specific implementations on various technology stacks.
 
 Everyone is welcome to contribute to this project. However, I am particularly interested in attracting people from throughout the EU who work for any of the supervisory 
