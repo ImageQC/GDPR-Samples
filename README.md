@@ -25,6 +25,6 @@ biulding websites using technology stacks that are not currently supported.
 
 ### Supported Stacks
 
-* WISA Core 2.0 MVC - Windows, IIS, SQL Server, ASP.Net Core 2.0 MVC - https://github.com/wpqs/GDPR-Samples/tree/master/Src/WISA/GDPR-AspNetCore20
+* [WISA Core 2.0 MVC - Windows, IIS, SQL Server, ASP.Net Core 2.0 MVC](https://github.com/wpqs/GDPR-Samples/tree/master/Src/WISA/GDPR-AspNetCore20)
 
 
