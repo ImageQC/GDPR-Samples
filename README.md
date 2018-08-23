@@ -6,8 +6,7 @@ The European Union (EU) [General Data Protection Regulations](https://gdpr-info.
 are selling good or services from such a website then these regulations apply even if you're not located in the EU. The fines for flouting the regulations can be 
 substantial; 10 Million EUR, or 2% of total worldwide turnover.
 
-This project aims to help micro and small development shops building websites comply with GDPR and similar regulations by providing information and reference implementations on a variety of technology stacks. It might also prove a useful resource for 
-larger organisations by helping to clarify the essential requirements for GDPR and providing a forum for discussion. 
+This project aims to help micro and small development shops building websites comply with GDPR and similar regulations by providing information as well as reference implementations on a variety of technology stacks. It might also prove a useful resource for larger organisations by helping to clarify the essential requirements for GDPR and encouraging the dissemination of knowledge. 
 
 ### Getting Started
 **The best place to start is the project's [wiki](https://github.com/wpqs/GDPR-Samples/wiki)** where you'll find documentation about GDPR requirements and how they might be implemented 
