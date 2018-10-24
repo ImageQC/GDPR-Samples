@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="36923bd7-b7f4-43f3-95a0-789dcd355dff" ChangeDateTime="10/14/2018 18:19:50">
+    <Property Name="ElementName" Value="[dbo].[GdprPDS].[Storage]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GdprPDS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StorageDuration" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e4b5355a-218e-403b-b7fc-e9126047a630" ChangeDateTime="10/23/2018 12:18:34">
+    <Property Name="ElementName" Value="[dbo].[GdprPDS].[StorageDuration]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GdprPDS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StorageDur" />
+  </Operation>
+</Operations>
