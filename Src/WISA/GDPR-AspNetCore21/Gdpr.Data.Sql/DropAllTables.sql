@@ -1,9 +1,12 @@
+/* GDPR-AspNetCore21 - DropAllTables.sql - drops all tables  */
+
+
 USE [GdprCore21]
 GO
 
 /* Tables without Dependencies */
 
-DROP TABLE [dbo].[GpdrTest]
+DROP TABLE [dbo].[GdprTest]
 GO
 
 DROP TABLE [dbo].[GdprPDF] 

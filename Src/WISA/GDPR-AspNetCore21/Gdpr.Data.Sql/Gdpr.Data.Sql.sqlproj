@@ -75,7 +75,8 @@
     <Build Include="GdprTest.sql" />
     <Build Include="GdprWXR.sql" />
     <None Include="DropAllTables.sql" />
-    <None Include="AddFK-RPD-AspNetUsersId.sql" />
+    <None Include="AlterAfterCreateTables.sql" />
+    <None Include="Gdpr.Data.SqlPublish.publish.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Gdpr.Data.Sql.refactorlog" />

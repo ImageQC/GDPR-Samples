@@ -5,7 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\GdprCore21Context.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Models\GdprCore21Context.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="wpqs.MxReturnCode" Version="1.4.30" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

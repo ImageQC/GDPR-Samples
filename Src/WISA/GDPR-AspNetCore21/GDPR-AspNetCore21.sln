@@ -5,13 +5,18 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Gdpr.Data.Sql", "Gdpr.Data.Sql\Gdpr.Data.Sql.sqlproj", "{1F57F648-8711-4A2B-B621-273D1CB74C05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gdpr.Domain", "Gdpr.Domain\Gdpr.Domain.csproj", "{4DAA2F4A-A121-4ED4-BB7F-E67223178617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.Domain", "Gdpr.Domain\Gdpr.Domain.csproj", "{4DAA2F4A-A121-4ED4-BB7F-E67223178617}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gdpr.DomainTests", "Gdpr.DomainTests\Gdpr.DomainTests.csproj", "{99CB20BD-0B4A-46C3-9FAF-9CF67D587D62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.DomainTests", "Gdpr.DomainTests\Gdpr.DomainTests.csproj", "{99CB20BD-0B4A-46C3-9FAF-9CF67D587D62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gdpr.UI.Cmd", "Gdpr.UI.Cmd\Gdpr.UI.Cmd.csproj", "{873B4470-EA68-475A-89A7-288D9716C800}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.UI.Cmd", "Gdpr.UI.Cmd\Gdpr.UI.Cmd.csproj", "{873B4470-EA68-475A-89A7-288D9716C800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gdpr.UI.Web", "Gdpr.UI.Web\Gdpr.UI.Web.csproj", "{8A23891B-8528-4D65-A7E6-E3485E589EB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.UI.Web", "Gdpr.UI.Web\Gdpr.UI.Web.csproj", "{8A23891B-8528-4D65-A7E6-E3485E589EB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{5057E4BB-99D8-4502-A21C-A484D404A0EC}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Docs\GdprTables.pdf = ..\..\..\Docs\GdprTables.pdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

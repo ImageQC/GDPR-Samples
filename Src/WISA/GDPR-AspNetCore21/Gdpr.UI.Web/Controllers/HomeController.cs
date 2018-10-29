@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+
 using Gdpr.UI.Web.Models;
 using Gdpr.Domain;
 
@@ -11,17 +11,24 @@ namespace Gdpr.UI.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IConfiguration _config;
+
+        public HomeController(IConfiguration config)
         {
+            _config = config;
+        }
+        public async Task<IActionResult> Test()
+        {
+            var conn = _config.GetConnectionString("DefaultConnection");
+            using (IAdminRepository repository = new AdminRepository(conn))
+            { 
+                var resCnt = await repository.GetRoleCountAsync();
+                ViewData["Message"] = String.Format("URD Count = {0}", resCnt.GetResult());
+            }
             return View();
         }
-
-        public IActionResult Test()
+        public IActionResult Index()
         {
-            IAdminRepository repository = new AdminRepository();
-            
-            ViewData["Message"] = String.Format("URD Count = {0}", repository.GetURDCount());
-
             return View();
         }
 
