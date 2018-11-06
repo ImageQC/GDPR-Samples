@@ -5,7 +5,8 @@
     [RoleCode] INT CONSTRAINT [DF_GdprURP_RoleCode] DEFAULT 0 NOT NULL, 
     [Status] INT CONSTRAINT [DF_GdprURP_Status] DEFAULT 0 NOT NULL, 
     [Purpose] NVARCHAR(MAX) NULL, 
-    [Description] NVARCHAR(MAX) NULL
+    [Description] NVARCHAR(MAX) NULL,
+    [RoleId] NVARCHAR(450) NULL, 
 )
 GO;
 CREATE UNIQUE CLUSTERED INDEX [IX_GdprURD_Name] ON [dbo].[GdprURD] ([Name])

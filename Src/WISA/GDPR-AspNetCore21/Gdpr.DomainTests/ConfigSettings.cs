@@ -8,5 +8,7 @@ namespace Gdpr.DomainTests
     {
         public static string EmptyDbConnectionStr = "";
         public static string LocalDbConnectionStr = "Server=(localdb)\\mssqllocaldb;Database=GdprCore21;Trusted_Connection=True;MultipleActiveResultSets=true";
+        public static string AzureDbConnectionStr = "Server=(localdb)\\mssqllocaldb;Database=GdprCore21;Trusted_Connection=True;MultipleActiveResultSets=true";
+
     }
 }

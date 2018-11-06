@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Gdpr.UI.Web-854846B2-A069-4BA1-89AB-8BE7E93FD105</UserSecretsId>
     <NeutralLanguage>en</NeutralLanguage>
+    <Version>1.1.30</Version>
   </PropertyGroup>
 
   <ItemGroup>

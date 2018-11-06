@@ -6,6 +6,8 @@
     <IsPackable>false</IsPackable>
 
     <NeutralLanguage>en</NeutralLanguage>
+
+    <Version>1.1.30</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -31,6 +31,17 @@ GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_GdprRPD_UserId] ON [dbo].[GdprRPD] ([UserId])
 GO
 
+ALTER TABLE [dbo].[GdprURD]  WITH CHECK ADD  CONSTRAINT [FK_GdprURD_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[GdprURD] CHECK CONSTRAINT [FK_GdprURD_RoleId]
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [IX_GdprURD_RoleId] ON [dbo].[GdprURD] ([RoleId])
+GO
+
 
 /* 
    This script allows you to make quick changes to the schema. At major releases you would drop all tables, update the table creation SQL, 

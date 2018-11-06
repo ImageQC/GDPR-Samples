@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.UI.Web", "Gdpr.UI.Web\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{5057E4BB-99D8-4502-A21C-A484D404A0EC}"
 	ProjectSection(SolutionItems) = preProject
+		AzureResCmds.txt = AzureResCmds.txt
 		..\..\..\Docs\GdprTables.pdf = ..\..\..\Docs\GdprTables.pdf
 	EndProjectSection
 EndProject

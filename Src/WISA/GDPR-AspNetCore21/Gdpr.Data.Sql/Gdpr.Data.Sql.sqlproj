@@ -83,5 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Gdpr.Data.Sql.publish.xml" />
+    <None Include="Gdpr.Data.Sql.Azure.publish.xml" />
   </ItemGroup>
 </Project>
