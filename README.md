@@ -1,5 +1,5 @@
-# GDPR-Samples
-## Sample implementations for GDPR for various technology stacks
+# AutoGDPR
+## Implementations of GDPR Automation for various technology stacks
 
 ### Objectives
 The European Union (EU) [General Data Protection Regulations](https://gdpr-info.eu) (GDPR) apply to almost everyone developing or operating a website used by people in the EU. If you

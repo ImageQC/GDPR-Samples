@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{5057E4BB-9
 	ProjectSection(SolutionItems) = preProject
 		AzureResCmds.txt = AzureResCmds.txt
 		..\..\..\Docs\GdprTables.pdf = ..\..\..\Docs\GdprTables.pdf
+		..\..\..\README.md = ..\..\..\README.md
 	EndProjectSection
 EndProject
 Global
