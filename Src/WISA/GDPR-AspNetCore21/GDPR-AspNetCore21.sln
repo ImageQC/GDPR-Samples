@@ -11,14 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.DomainTests", "Gdpr.Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.UI.Cmd", "Gdpr.UI.Cmd\Gdpr.UI.Cmd.csproj", "{873B4470-EA68-475A-89A7-288D9716C800}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.UI.Web", "Gdpr.UI.Web\Gdpr.UI.Web.csproj", "{8A23891B-8528-4D65-A7E6-E3485E589EB3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{5057E4BB-99D8-4502-A21C-A484D404A0EC}"
 	ProjectSection(SolutionItems) = preProject
 		AzureResCmds.txt = AzureResCmds.txt
 		..\..\..\Docs\GdprTables.pdf = ..\..\..\Docs\GdprTables.pdf
 		..\..\..\README.md = ..\..\..\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gdpr.UI.WebApp", "Gdpr.UI.WebApp\Gdpr.UI.WebApp.csproj", "{6C82B798-627A-4EE3-BB8E-CEB8DF13B21F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +44,10 @@ Global
 		{873B4470-EA68-475A-89A7-288D9716C800}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{873B4470-EA68-475A-89A7-288D9716C800}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{873B4470-EA68-475A-89A7-288D9716C800}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A23891B-8528-4D65-A7E6-E3485E589EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A23891B-8528-4D65-A7E6-E3485E589EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A23891B-8528-4D65-A7E6-E3485E589EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A23891B-8528-4D65-A7E6-E3485E589EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C82B798-627A-4EE3-BB8E-CEB8DF13B21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C82B798-627A-4EE3-BB8E-CEB8DF13B21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C82B798-627A-4EE3-BB8E-CEB8DF13B21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C82B798-627A-4EE3-BB8E-CEB8DF13B21F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
