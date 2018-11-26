@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MxErrAccountDisabled" xml:space="preserve">
+    <value>Your account is disabled. This is usually because you haven't responded to an email sent to you to confirm your registration or change in email address. Please use the forgotten password mechanism to restore your account or report this problem</value>
+  </data>
+  <data name="MxErrAccountEmailNotUnique" xml:space="preserve">
+    <value>Your new email address is not unique. You cannot update your account using your requested email as it is already taken. Please change your email again using a different address.</value>
+  </data>
+  <data name="MxErrAccountInvalidLoginAttempt" xml:space="preserve">
+    <value>Invalid Login. The login information you provided was incorrect. Please try again</value>
+  </data>
+  <data name="MxErrAccountLockout" xml:space="preserve">
+    <value>Your account has been temporarily disabled. This is because you have entered an incorrect password a number of times. Please try again after the lockout period has ended</value>
+  </data>
+  <data name="MxErrAccountPasswordNotSet" xml:space="preserve">
+    <value>Password not set. This operation requires you to have a password for your account. Please set your password and try again. </value>
+  </data>
+  <data name="MxErrAccountUserNameNotUnique" xml:space="preserve">
+    <value>Your new username is not unique. You cannot update your account using your requested username as it is already taken. Please change your username again using a different value.</value>
+  </data>
   <data name="MxErrDbCmdException" xml:space="preserve">
     <value>Database command failed.  Error in SQL statement, parameters or table. Please report this problem.</value>
   </data>
@@ -134,6 +152,12 @@
   </data>
   <data name="MxErrTest" xml:space="preserve">
     <value>Error test. Coding defect. Please report this problem</value>
+  </data>
+  <data name="MxErrUnexpected" xml:space="preserve">
+    <value>Unexpected problem. Something unforeseen happened. Please report this problem</value>
+  </data>
+  <data name="MxErrUnknownException" xml:space="preserve">
+    <value>Unknown exception. Coding defect. Please report this problem</value>
   </data>
   <data name="MxMsgNotFound" xml:space="preserve">
     <value>Error information not found. Coding defect. Please report this problem</value>

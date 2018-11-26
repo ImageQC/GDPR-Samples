@@ -3,14 +3,24 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Gdpr.UI.WebApp-927C3138-605F-47BF-A7DF-AEA3B0F6BF19</UserSecretsId>
-    <Version>1.1.30.0</Version>
+    <Version>1.1.31.0</Version>
     <NeutralLanguage>en</NeutralLanguage>
+    <Copyright>2018 ImageQC Limited</Copyright>
+    <Authors>Will Stott</Authors>
+    <Company>ImageQC Limited</Company>
+    <Product>MxAutoGDPR Sample Website</Product>
+    <Description>Sample website demonstrating use of the MxAutoGDPR package to automate most of the requirements set by the E.U. General Data Protection Regulations (GDPR).</Description>
+    <PackageLicenseUrl>https://github.com/wpqs/AutoGDPR/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/wpqs/AutoGDPR/wiki</PackageProjectUrl>
+    <PackageReleaseNotes>ASP.Net Core 2.1 with Razor Pages</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
+    <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.1" />
+    <PackageReference Include="Sendgrid" Version="9.10.0" />
     <PackageReference Include="wpqs.MxReturnCode" Version="1.4.30" />
   </ItemGroup>
 
@@ -19,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

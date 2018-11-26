@@ -11,6 +11,14 @@ namespace Gdpr.UI.WebApp
 
         //Errors
         public const string MxErrTest = "MxErrTest";
+        public const string MxErrUnknownException = "MxErrUnknownException";
+        public const string MxErrUnexpected = "MxErrUnexpected";
+        public const string MxErrAccountEmailNotUnique = "MxErrAccountEmailNotUnique";
+        public const string MxErrAccountUserNameNotUnique = " MxErrAccountUserNameNotUnique";
+        public const string MxErrAccountPasswordNotSet = "MxErrAccountPasswordNotSet";
+        public const string MxErrAccountInvalidLoginAttempt = "MxErrAccountInvalidLoginAttempt";
+        public const string MxErrAccountDisabled = "MxErrAccountDisabled";
+        public const string MxErrAccountLockout = "MxErrAccountLockout";
         //"Error test. Coding defect. Please report this problem"
 
 
@@ -31,8 +39,35 @@ namespace Gdpr.UI.WebApp
             public const int DomainAdminRepositoryFirst = 1020101;   //first error code in class Gdrp.Domain.AdminRepository
             public const int DomainAdminRepositoryLast = 1020103;    //last error code in class Gdrp.Domain.AdminRepository
                //Gdrp.UI.Cmd
-            public const int CmdProgramFirst = 2010101;     //first error code in class Gdrp.UI.Cmd.Program
-            public const int CmdProgramLast = 2010101;     //last error code in class Gdrp.UI.Cmd.Program
+            public const int CmdProgramFirst = 2010101;             //first error code in class Gdrp.UI.Cmd.Program
+            public const int CmdProgramLast = 2010101;              //last error code in class Gdrp.UI.Cmd.Program
+              //Gdrp.UI.WebApp
+            public const int WebAppProgramFirst = 3010101;                      //first error code in class Gdrp.UI.WebApp.Error.cshtml.cs
+            public const int WebAppProgramLast = 3010101;                       //last error code in class Gdrp.UI.WebApp.Error.cshtml.cs
+            public const int WebAppConfirmEmailChangeFirst = 3020101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.ConfirmEmailChange.cshtml.cs
+            public const int WebAppConfirmEmailChangeLast = 3020108;           //last error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.ConfirmEmailChange.cs
+            public const int WebAppAccountManageIndexFirst = 3030101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.Index.cshtml.cs
+            public const int WebAppAccountManageIndexLast = 3030404;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.Index.cshtml.cs
+            public const int WebAppAccountRegisterFirst = 3040101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Register.cshtml.cs
+            public const int WebAppAccountRegisterLast = 3040105;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Register.cshtml.cs
+            public const int WebAppAccountConfirmEmailFirst = 3050101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ConfirmEmail.cshtml.cs
+            public const int WebAppAccountConfirmEmailLast = 3050104;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ConfirmEmail.cshtml.cs
+            public const int WebAppAccountLoginFirst = 3060101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ConfirmEmail.cshtml.cs
+            public const int WebAppAccountLoginLast = 3060207;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ConfirmEmail.cshtml.cs
+            public const int WebAppAccountResetPasswordFirst = 3070101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ResetPassword.cshtml.cs
+            public const int WebAppAccountResetPasswordLast = 3070104;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ResetPassword.cshtml.cs
+            public const int WebAppAccountForgotPasswordFirst = 3080101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ForgotPassword.cshtml.cs
+            public const int WebAppAccountForgotPasswordLast = 3080102;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ForgotPassword.cshtml.cs
+            public const int WebAppAccountExternalLoginFirst = 3090101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ForgotPassword.cshtml.cs
+            public const int WebAppAccountExternalLoginLast = 3090205;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.ForgotPassword.cshtml.cs
+            public const int WebAppAccountChangePasswordFirst = 3100101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.ChangePassword.cshtml.cs
+            public const int WebAppAccountChangePasswordLast = 3100104;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.ChangePassword.cshtml.cs
+            public const int WebAppAccountSetPasswordFirst = 3110101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.SetPassword.cshtml.cs
+            public const int WebAppAccountSetPasswordLast = 3110104;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.SetPassword.cshtml.cs
+            public const int WebAppAccountManageEnableAuthenticatorFirst = 3120101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.EnableAuthenticator.cshtml.cs
+            public const int WebAppAccountManageEnableAuthenticatoLast = 3120104;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.EnableAuthenticator.cshtml.cs
+            public const int WebAppIndexFirst = 3130101;          //first error code in class Gdpr.UI.WebApp.Pages.Index.cshtml.cs
+            public const int WebAppIndexLast = 3130104;          //first error code in class Gdpr.UI.WebApp.Pages.Index.cshtml.cs
 
         }
     }

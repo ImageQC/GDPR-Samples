@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Gdpr.UI.WebApp.Pages.Shared;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Gdpr.UI.WebApp.Pages
 {
-    public class ContactModel : PageModel
+    public class ContactModel : BasePageModel
     {
-        public string Message { get; set; }
-
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            Message = "Your contact page.";
+            SetPageStatusMsg("Information about how to contact us", ExistingMsg.Overwrite);
+
+            return Page();
         }
     }
 }

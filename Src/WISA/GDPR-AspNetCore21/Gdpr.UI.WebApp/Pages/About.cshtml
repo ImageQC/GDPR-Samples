@@ -4,6 +4,17 @@
     ViewData["Title"] = "About";
 }
 <h2>@ViewData["Title"]</h2>
-<h3>@Model.Message</h3>
+@await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
 
-<p>Use this area to provide additional information.</p>
+
+<p>
+ @Model.Description Further details are available from the project's <a href="https://github.com/wpqs/AutoGDPR/wiki" target="_blank">Wiki</a>
+</p>
+
+<hr />
+<h5>Module Details</h5>
+<ul>
+    <li>@Startup.WebAppName v @Startup.WebAppVersion</li>
+    <li>@Startup.DomainName v @Startup.DomainVersion</li>
+</ul>
+

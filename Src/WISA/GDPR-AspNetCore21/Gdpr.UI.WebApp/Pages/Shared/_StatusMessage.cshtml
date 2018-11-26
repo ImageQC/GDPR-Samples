@@ -1,0 +1,11 @@
+﻿@model string
+@if (string.IsNullOrEmpty(Model) == false)
+{
+    var msgType = Model.ToLower();
+    var statusMessageClass = msgType.StartsWith("error") ? "danger" : msgType.StartsWith("warning") ? "warning" : msgType.StartsWith("info") ? "info" : "success";
+<div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     @Html.Raw(Model)
+</div>
+<hr />
+}

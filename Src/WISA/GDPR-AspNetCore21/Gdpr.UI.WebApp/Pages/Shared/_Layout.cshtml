@@ -45,7 +45,14 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - Gdpr.UI.WebApp</p>
+         <div class="row">
+                <div class="col-xs-9">
+                    <small class="pull-left">&copy; @Startup.Copyright:&nbsp;your use of this website is subject to <a asp-page="TermsConditions">Terms &amp; Conditions</a>&nbsp;|&nbsp;<a asp-page="Privacy">Privacy</a>&nbsp;|&nbsp;<a asp-page="Cookies">Cookies</a></small>
+                </div>
+                <div class="col-xs-3">
+                    <small class="pull-right"><a asp-page="Contact" >Contact us</a>&nbsp;|&nbsp; @Startup.WebAppVersion</small>
+                </div>
+            </div>
         </footer>
     </div>
 

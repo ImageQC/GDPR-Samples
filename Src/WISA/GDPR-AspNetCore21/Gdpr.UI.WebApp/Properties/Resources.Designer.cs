@@ -61,6 +61,60 @@ namespace Gdpr.UI.WebApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account is disabled. This is usually because you haven&apos;t responded to an email sent to you to confirm your registration or change in email address. Please use the forgotten password mechanism to restore your account or report this problem.
+        /// </summary>
+        internal static string MxErrAccountDisabled {
+            get {
+                return ResourceManager.GetString("MxErrAccountDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your new email address is not unique. You cannot update your account using your requested email as it is already taken. Please change your email again using a different address..
+        /// </summary>
+        internal static string MxErrAccountEmailNotUnique {
+            get {
+                return ResourceManager.GetString("MxErrAccountEmailNotUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Login. The login information you provided was incorrect. Please try again.
+        /// </summary>
+        internal static string MxErrAccountInvalidLoginAttempt {
+            get {
+                return ResourceManager.GetString("MxErrAccountInvalidLoginAttempt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account has been temporarily disabled. This is because you have entered an incorrect password a number of times. Please try again after the lockout period has ended.
+        /// </summary>
+        internal static string MxErrAccountLockout {
+            get {
+                return ResourceManager.GetString("MxErrAccountLockout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password not set. This operation requires you to have a password for your account. Please set your password and try again. .
+        /// </summary>
+        internal static string MxErrAccountPasswordNotSet {
+            get {
+                return ResourceManager.GetString("MxErrAccountPasswordNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your new username is not unique. You cannot update your account using your requested username as it is already taken. Please change your username again using a different value..
+        /// </summary>
+        internal static string MxErrAccountUserNameNotUnique {
+            get {
+                return ResourceManager.GetString("MxErrAccountUserNameNotUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Database command failed.  Error in SQL statement, parameters or table. Please report this problem..
         /// </summary>
         internal static string MxErrDbCmdException {
@@ -111,6 +165,24 @@ namespace Gdpr.UI.WebApp.Properties {
         internal static string MxErrTest {
             get {
                 return ResourceManager.GetString("MxErrTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected problem. Something unforeseen happened. Please report this problem.
+        /// </summary>
+        internal static string MxErrUnexpected {
+            get {
+                return ResourceManager.GetString("MxErrUnexpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown exception. Coding defect. Please report this problem.
+        /// </summary>
+        internal static string MxErrUnknownException {
+            get {
+                return ResourceManager.GetString("MxErrUnknownException", resourceCulture);
             }
         }
         

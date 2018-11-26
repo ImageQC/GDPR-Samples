@@ -11,6 +11,8 @@ namespace Gdpr.UI.WebApp
         public static void Main(string[] args)
         {
             MxUserMsg.Init(Assembly.GetExecutingAssembly(), MxMsgs.SupportedCultures);
+            MxReturnCode<bool> rc = new MxReturnCode<bool>("Main()", false, "admin@imageqc.com");
+
             CreateWebHostBuilder(args).Build().Run();
         }
 

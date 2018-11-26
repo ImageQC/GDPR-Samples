@@ -1,9 +1,11 @@
-﻿@page
+﻿@page 
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
+<h2>@ViewData["Title"]</h2>
+@await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
 
-<h3>@Model.Status</h3>
-<hr />
 <h3>@Model.URDCount</h3>
+
+@await Html.PartialAsync("_Tip", Model.Tip)
