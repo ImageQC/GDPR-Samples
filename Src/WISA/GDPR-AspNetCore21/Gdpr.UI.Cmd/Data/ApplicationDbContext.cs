@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Gdpr.UI.Cmd.Data
 {
-    class ApplicationDbContext :  IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext      //03-12-18 made public
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
                  : base(options)

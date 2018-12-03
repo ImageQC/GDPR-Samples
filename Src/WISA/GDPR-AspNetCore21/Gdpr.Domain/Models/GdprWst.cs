@@ -5,6 +5,7 @@ namespace Gdpr.Domain.Models
 {
     public class GdprWst
     {
+        public enum StatusVal { NotImplemented = 0, Published = 1 };    //03-12-18
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

@@ -37,13 +37,17 @@ namespace Gdpr.UI.WebApp
             public const int DomainRepositoryBaseFirst = 1010101;    //first error code in class Gdrp.Domain.RepositoryBase
             public const int DomainRepositoryBaseLast = 1010103;     //last error code in class Gdrp.Domain.RepositoryBase
             public const int DomainAdminRepositoryFirst = 1020101;   //first error code in class Gdrp.Domain.AdminRepository
-            public const int DomainAdminRepositoryLast = 1020103;    //last error code in class Gdrp.Domain.AdminRepository
-               //Gdrp.UI.Cmd
+            public const int DomainAdminRepositoryLast = 1020601;    //last error code in class Gdrp.Domain.AdminRepository
+            public const int DomainSysRepositoryFirst = 1030101;   //first error code in class Gdrp.Domain.AdminRepository
+            public const int DomainSysRepositoryLast = 1030103;    //last error code in class Gdrp.Domain.AdminRepository
+            public const int DomainControllerRepositoryFirst = 1040101;   //first error code in class Gdrp.Domain.AdminRepository
+            public const int DomainControllerRepositoryLast = 1040103;    //last error code in class Gdrp.Domain.AdminRepository
+                                                                   //Gdrp.UI.Cmd
             public const int CmdProgramFirst = 2010101;             //first error code in class Gdrp.UI.Cmd.Program
             public const int CmdProgramLast = 2010101;              //last error code in class Gdrp.UI.Cmd.Program
               //Gdrp.UI.WebApp
             public const int WebAppProgramFirst = 3010101;                      //first error code in class Gdrp.UI.WebApp.Error.cshtml.cs
-            public const int WebAppProgramLast = 3010101;                       //last error code in class Gdrp.UI.WebApp.Error.cshtml.cs
+            public const int WebAppProgramLast = 3010103;                       //last error code in class Gdrp.UI.WebApp.Error.cshtml.cs
             public const int WebAppConfirmEmailChangeFirst = 3020101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.ConfirmEmailChange.cshtml.cs
             public const int WebAppConfirmEmailChangeLast = 3020108;           //last error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.ConfirmEmailChange.cs
             public const int WebAppAccountManageIndexFirst = 3030101;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.Index.cshtml.cs
@@ -68,6 +72,12 @@ namespace Gdpr.UI.WebApp
             public const int WebAppAccountManageEnableAuthenticatoLast = 3120104;          //first error code in class Gdpr.UI.WebApp.Areas.Identity.Pages.Account.Manage.EnableAuthenticator.cshtml.cs
             public const int WebAppIndexFirst = 3130101;          //first error code in class Gdpr.UI.WebApp.Pages.Index.cshtml.cs
             public const int WebAppIndexLast = 3130104;          //first error code in class Gdpr.UI.WebApp.Pages.Index.cshtml.cs
+            public const int WebAppErrorFirst = 3140101;                      //first error code in class Gdrp.UI.WebApp.Error.cshtml.cs
+            public const int WebAppErrorLast = 3140101;                       //last error code in class Gdrp.UI.WebApp.Error.cshtml.cs
+            public const int WebAppDataSeedDbFirst = 3150101;                      //first error code in class Gdrp.UI.WebApp.Data.SeedDb.cs
+            public const int WebAppDataSeedDbLast = 3150101;                       //last error code in class Gdrp.UI.WebApp.Data.SeedDb.cs
+            public const int WebAppDataIdentityDbFirst = 3160101;                      //first error code in class Gdrp.UI.WebApp.Data.SeedDb.cs
+            public const int WebAppDataIdentityDbLast = 3160101;                       //last error code in class Gdrp.UI.WebApp.Data.SeedDb.cs
 
         }
     }

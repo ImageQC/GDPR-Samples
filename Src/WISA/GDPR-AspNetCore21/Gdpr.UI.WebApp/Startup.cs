@@ -52,13 +52,15 @@ namespace Gdpr.UI.WebApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                    //03-12-18 added support for Roles
+            services.AddDefaultIdentity<IdentityUser>()     //https://github.com/aspnet/Identity/issues/1884
+               .AddRoles<IdentityRole>()
+               .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //services.AddIdentity<IdentityUser, IdentityRole>()
             //        .AddEntityFrameworkStores<ApplicationDbContext>()
             //        .AddDefaultTokenProviders();
-
+            
             services.AddAuthentication()
                 .AddMicrosoftAccount(microsoftOptions =>
                 {

@@ -9,8 +9,20 @@ using Gdpr.Domain.Models;
 
 namespace Gdpr.Domain
 {
-    public class AdminRepository : RepositoryBase, IAdminRepository
-    {
+    public class AdminRepository : RepositoryBase, IAdminRepository  //03-12-18 added statics and minor changes; errorcodes, function names
+    {       //03-12-18 - added statics
+        public static readonly string GdpaRoleAdmin = "Admin";
+        public static readonly string GdpaRoleController = "Controller";
+        public static readonly string GdpaRoleStandard = "Standard";
+        public static readonly string GdpaRoleGuest = "Guest";
+        public static readonly string GdpaRoleSystem = "System";
+        public static readonly string GdpaRoleGhost = "Ghost";
+
+        public static readonly string IdentityRoleAdmin = "Admin";
+        public static readonly string IdentityRoleController = "Controller";
+        public static readonly string IdentityRoleStandard = "Standard";
+        public static readonly string IdentityRoleGuest = "Guest";
+            //03-12-18 - added statics
         private bool disposed = false;
         protected override void Dispose(bool disposing)
         {
@@ -33,16 +45,47 @@ namespace Gdpr.Domain
         }
         public AdminRepository(string connection) : base(connection) { }
 
+
+        public static string GetIdentityRolename(string gdpaRolename) //03-12-18
+        {
+            string rc = null;
+
+            if (gdpaRolename != null)
+            {
+                if (gdpaRolename == AdminRepository.GdpaRoleAdmin)
+                    rc = AdminRepository.IdentityRoleAdmin;
+                else if (gdpaRolename == AdminRepository.GdpaRoleController)
+                    rc = AdminRepository.IdentityRoleController;
+                else if (gdpaRolename == AdminRepository.GdpaRoleStandard)
+                    rc = AdminRepository.IdentityRoleStandard;
+                else if (gdpaRolename == AdminRepository.GdpaRoleGuest)
+                    rc = AdminRepository.IdentityRoleGuest;
+                else if (gdpaRolename == AdminRepository.GdpaRoleSystem)
+                    rc = AdminRepository.IdentityRoleGuest;
+                else if (gdpaRolename == AdminRepository.GdpaRoleGhost)
+                    rc = AdminRepository.IdentityRoleGuest;
+                else
+                {
+                    rc = null;
+                }
+            }
+            return rc;
+        }
+
         public async Task<MxReturnCode<bool>> CreateRoleAsync(string name, int rolecode, string purpose, string description)
         {
-            MxReturnCode<bool> rc = new MxReturnCode<bool>("CreateRoleAsync()");
+            MxReturnCode<bool> rc = new MxReturnCode<bool>("AdminRepository.CreateRoleAsync()");
 
-            if ((name?.Length == 0) || (GdprUrd.IsValidRoleCode(rolecode) == false) || (purpose?.Length == 0) || (description?.Length == 0))
+            if ((String.IsNullOrWhiteSpace(name)) || (GdprUrd.IsValidRoleCode(rolecode) == false) || (String.IsNullOrWhiteSpace(purpose)) || (String.IsNullOrWhiteSpace(description)))
                 rc.SetError(1020101, MxError.Source.Param, "invalid name, rolecode, purpose, description");
             else
             {
                 try
                 {
+                    //ASPNETRole ID,
+                    //Get WST from Title
+                    //Create WXR
+
                     if ((rc += CheckConnection()).IsSuccess())
                     {
                         GdprUrd role = new GdprUrd
@@ -72,7 +115,7 @@ namespace Gdpr.Domain
   
         public async Task<MxReturnCode<int>> GetRoleCountAsync()
         {
-            MxReturnCode<int> rc = new MxReturnCode<int>("GetRoleCountAsync()", -1);
+            MxReturnCode<int> rc = new MxReturnCode<int>("AdminRepository.GetRoleCountAsync()", -1);
             try
             {
                 if ((rc += CheckConnection()).IsSuccess())
@@ -92,7 +135,7 @@ namespace Gdpr.Domain
 
         public async Task<MxReturnCode<bool>> DeleteRoleAsync(GdprUrd role)
         {
-            MxReturnCode<bool> rc = new MxReturnCode<bool>("DeleteRoleAsync()", false);
+            MxReturnCode<bool> rc = new MxReturnCode<bool>("AdminRepository.DeleteRoleAsync()", false);
 
             if (role == null)
                 rc.SetError(1020301, MxError.Source.Param, "role is null");
@@ -120,10 +163,10 @@ namespace Gdpr.Domain
 
         public async Task<MxReturnCode<bool>> UpdateRoleAsync(GdprUrd role, string name, int rolecode, string purpose, string description, GdprUrd.StatusVal status)
         {
-            MxReturnCode<bool> rc = new MxReturnCode<bool>("UpdateRoleAsync()", false);
+            MxReturnCode<bool> rc = new MxReturnCode<bool>("AdminRepository.UpdateRoleAsync()", false);
 
-            if ((role == null) || (RepositoryBase.IsGuidSet(role.Id) == false) || (name?.Length == 0) || (GdprUrd.IsValidRoleCode(rolecode) == false))
-                rc.SetError(1020301, MxError.Source.Param, "role is null, role.Id is not set, name is null or emptpy, or rolecode is invalid");
+            if ((role == null) || (RepositoryBase.IsGuidSet(role.Id) == false) || (String.IsNullOrWhiteSpace(name)) || (GdprUrd.IsValidRoleCode(rolecode) == false))
+                rc.SetError(1020401, MxError.Source.Param, "role is null, role.Id is not set, name is null or emptpy, or rolecode is invalid");
             else
             {
                 try
@@ -133,14 +176,14 @@ namespace Gdpr.Domain
                         var sql = "UPDATE GdprUrd SET Name = @Name, RoleCode = @RoleCode, Status = @Status, Purpose = @Purpose, Description = @Description WHERE Id = @Id;";
                         var res = await db.ExecuteAsync(sql, new { Name = name, RoleCode = rolecode, Status = (int)status, Purpose = purpose, Description = description, Id = role.Id });
                         if (res != 1)
-                            rc.SetError(1020302, MxError.Source.Data, String.Format("record not updated {0}", role.ToString()));
+                            rc.SetError(1020402, MxError.Source.Data, String.Format("record not updated {0}", role.ToString()));
                         else
                             rc.SetResult(true);
                     }
                 }
                 catch (Exception e)
                 {
-                    rc.SetError(1020303, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
+                    rc.SetError(1020403, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
                 }
             }
             return rc;
@@ -148,10 +191,10 @@ namespace Gdpr.Domain
                        
         public async Task<MxReturnCode<GdprUrd>> GetRoleAsync(string rolename)
         {
-            MxReturnCode<GdprUrd> rc = new MxReturnCode<GdprUrd>("GetRoleAsync(rolename)", null);
+            MxReturnCode<GdprUrd> rc = new MxReturnCode<GdprUrd>("AdminRepository.GetRoleAsync(rolename)", null);
 
-            if (rolename?.Length == 0)
-                rc.SetError(1020401, MxError.Source.Param, "rolename is null or empty");
+            if (String.IsNullOrWhiteSpace(rolename))
+                rc.SetError(1020501, MxError.Source.Param, "rolename is null or empty");
             else
             {
                 try
@@ -160,13 +203,13 @@ namespace Gdpr.Domain
                     if ((rc += CheckConnection()).IsSuccess())
                     {
                         var sql = "SELECT * FROM GdprUrd WHERE Name = @Name";
-                        var res = await db.QuerySingleAsync<GdprUrd>(sql, new { Name = rolename });
+                        var res = await db.QuerySingleOrDefaultAsync<GdprUrd>(sql, new { Name = rolename });
                         rc.SetResult(res);
                     }
                 }
                 catch (Exception e)
                 {
-                    rc.SetError(1020402, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
+                    rc.SetError(1020502, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
                 }
             }
             return rc;
@@ -175,7 +218,7 @@ namespace Gdpr.Domain
 
         public async Task<MxReturnCode<List<GdprUrd>>>GetAllRolesAsync()
         {
-            MxReturnCode<List<GdprUrd>> rc = new MxReturnCode<List<GdprUrd>>("GetAllRolesAsync()", null);
+            MxReturnCode<List<GdprUrd>> rc = new MxReturnCode<List<GdprUrd>>("AdminRepository.GetAllRolesAsync()", null);
 
             try
             {
@@ -192,7 +235,7 @@ namespace Gdpr.Domain
             }
             catch (Exception e)
             {
-                rc.SetError(1020501, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
+                rc.SetError(1020601, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
             }
             return rc;
         }

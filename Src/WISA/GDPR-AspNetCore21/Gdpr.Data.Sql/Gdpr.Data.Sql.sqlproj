@@ -84,5 +84,6 @@
   <ItemGroup>
     <None Include="Gdpr.Data.Sql.publish.xml" />
     <None Include="Gdpr.Data.Sql.Azure.publish.xml" />
+    <None Include="SeedDb.sql" />
   </ItemGroup>
 </Project>

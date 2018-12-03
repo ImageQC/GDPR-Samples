@@ -23,7 +23,7 @@ namespace Gdpr.UI.WebApp.Pages
             if (statusCode.HasValue == false)
             {
                 var feature = this.HttpContext.Features?.Get<IExceptionHandlerFeature>();
-                rc.SetError(3010101, MxError.Source.Exception, feature?.Error?.Message ?? "[not set]", MxMsgs.MxErrUnknownException, true);
+                rc.SetError(3140101, MxError.Source.Exception, feature?.Error?.Message ?? "[not set]", MxMsgs.MxErrUnknownException, true); //03-12-18 change to errorcde
                 SetPageStatusMsg(rc.GetErrorUserMsgHtml(Startup.WebAppName, WebErrorHandling.GetMxRcReportToEmailBody()), ExistingMsg.Overwrite);
                 _logger.LogError(rc.GetErrorTechMsg());
             }

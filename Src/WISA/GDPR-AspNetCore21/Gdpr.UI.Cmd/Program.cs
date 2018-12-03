@@ -23,11 +23,11 @@ namespace Gdpr.UI.Cmd
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
                                                    .AddJsonFile("local.settings.json")
                                                    .Build();
-            if (config?.GetSection("ConnectionStrings")?["DefaultConnection"] == null)
-                rc.SetError(2010101, MxError.Source.AppSetting, "invalid configuration");
+            var conn = config?["ConnectionStrings:DefaultConnection"];  //03-12-18
+            if (conn == null)
+                rc.SetError(2010101, MxError.Source.AppSetting, "config not built or ConnectionStrings:DefaultConnection not found");
             else
-            {
-                var conn = config["ConnectionStrings:DefaultConnection"];
+            { 
                 using (IAdminRepository repository = new AdminRepository(conn))
                 {
                     rc += await repository.GetRoleCountAsync();
