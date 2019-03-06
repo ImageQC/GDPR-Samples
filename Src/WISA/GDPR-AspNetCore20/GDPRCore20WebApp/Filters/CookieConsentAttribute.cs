@@ -14,13 +14,13 @@ namespace GDPRCore20WebApp.Filters
 
     public class CookieConsentAttribute : ActionFilterAttribute
     {
-        public const string CONSENT_COOKIE_NAME = "CookieConsent";
+        public const string CONSENT_COOKIE_NAME = "MxConsentCookie";
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (filterContext != null)
             {
-                var request = filterContext?.HttpContext?.Request;
+                HttpRequest request = filterContext?.HttpContext?.Request;
                 var controller = filterContext?.Controller as Controller;
                 var viewBag = controller?.ViewBag;
 
@@ -28,7 +28,6 @@ namespace GDPRCore20WebApp.Filters
                 {
                     viewBag.AskCookieConsent = true;
                     viewBag.HasCookieConsent = false;
-                    viewBag.CookieConsentFound = false;
 
                     try
                     {
@@ -48,23 +47,29 @@ namespace GDPRCore20WebApp.Filters
                                     viewBag.AskCookieConsent = false;   // don't ask consent from search engines, also don't set cookies
                                 else
                                 {                                       // first request on the site and no DNT header.
-                                    filterContext.HttpContext.Response?.Cookies?.Append(CONSENT_COOKIE_NAME, "asked");
+                                    CookieOptions option = new CookieOptions
+                                    {
+                                        Expires = DateTime.UtcNow.AddMonths(6)   //set expired to ensure it is not a session cookie
+                                    };
+                                    filterContext?.HttpContext?.Response?.Cookies?.Append(CONSENT_COOKIE_NAME, "asked", option);
                                 }
                             }
                         }
                         else
                         {
-                            viewBag.CookieConsentFound = true;
                             viewBag.AskCookieConsent = false;
                             if (consentCookie == "asked")
                             {           // consent is implicitly given
                                 consentCookie = "true";
                                 CookieOptions option = new CookieOptions
                                 {
-                                    Expires = DateTime.UtcNow.AddYears(1)
+                                    Expires = DateTime.UtcNow.AddMonths(6)
                                 };
-                                filterContext.HttpContext.Response?.Cookies?.Append(CONSENT_COOKIE_NAME, consentCookie, option);
-                                viewBag.HasCookieConsent = true;
+                                if (filterContext?.HttpContext?.Response?.Cookies != null)
+                                {
+                                    filterContext.HttpContext.Response.Cookies.Append(CONSENT_COOKIE_NAME, consentCookie, option);
+                                    viewBag.HasCookieConsent = true;
+                                }
                             }
                             else if (consentCookie == "true")
                             {
@@ -85,6 +90,31 @@ namespace GDPRCore20WebApp.Filters
             base.OnActionExecuting(filterContext);
         }
 
+
+        //public override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //    var controller = filterContext?.Controller as Controller;
+        //    var viewBag = controller?.ViewBag;
+
+        //    var cookie = filterContext?.HttpContext?.Request?.Cookies["MyConsentCookie"];
+        //    if (cookie == null)
+        //    {
+        //        viewBag.AskCookieConsent = true;
+        //        viewBag.HasCookieConsent = false;
+
+        //        CookieOptions option = new CookieOptions
+        //        {
+        //            Expires = DateTime.UtcNow.AddDays(5)
+        //        };
+        //        filterContext?.HttpContext?.Response?.Cookies?.Append("MyConsentCookie", "set", option);
+        //    }
+        //    else
+        //    {
+        //        viewBag.AskCookieConsent = false;
+        //        viewBag.HasCookieConsent = true;
+        //    }
+        //    base.OnActionExecuting(filterContext);
+        //}
         private bool IsSearchCrawler(string userAgent)
         {
             if (!String.IsNullOrEmpty(userAgent))

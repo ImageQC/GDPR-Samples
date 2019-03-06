@@ -25,7 +25,6 @@ namespace GDPRCore20WebApp.Services
             {
                 viewBag.AskCookieConsent = false;
                 viewBag.HasCookieConsent = false;
-                viewBag.CookieConsentFound = false;
             }
             response.Cookies.Delete(CookieConsentAttribute.CONSENT_COOKIE_NAME);
         }

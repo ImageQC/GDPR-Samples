@@ -36,7 +36,6 @@ namespace GDPRCore20WebApp.Controllers
             CookieConsent.RemoveConsentCookie(Response, this);
             ViewBag.AskCookieConsent = false;
             ViewBag.HasCookieConsent = false;
-            ViewBag.CookieConsentFound = false;
 
             return View("Index");
         }

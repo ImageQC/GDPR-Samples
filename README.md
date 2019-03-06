@@ -20,6 +20,7 @@ biulding websites using technology stacks that are not currently supported.
 ### News
 
 * 19 Aug 18 - WISA Core 2.0 MVC v 1.0.0 baseline release (with cookie support), headline requirements and functional specifications
+* 06 Mar 19 - WISA Core 2.0 MVC v 1.1.31.0 change to ensure the initial cookie is permanent rather than session
 
 ### Supported Technology Stacks
 

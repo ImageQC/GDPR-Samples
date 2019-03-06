@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-GDPRCore20WebApp-94DC349D-2D17-4E7E-B41A-C7C9E48488A2</UserSecretsId>
+    <Version>1.1.31.0</Version>
   </PropertyGroup>
 
 
