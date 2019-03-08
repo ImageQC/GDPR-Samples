@@ -4,28 +4,112 @@
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
-
-<p>AskCookieConsent: @(ViewBag.AskCookieConsent)</p>   
-<p>HasCookieConsent: @(ViewBag.HasCookieConsent)</p> 
-    
+   
 <hr />
-    
+
+<h4>Background</h4>
+<p>A cookies are small bits of text stored on your device and sent by your browser to the websites you visit. 
+    Some of this information is necessary for your proper use of our website (Essential Cookies) whilst 
+    other information may be used to personalize the content you receive (Functional Cookies), generate statistics 
+    to help us optimize the operation of our website (Analytical Cookies), and for purposes like providing you with relevant
+    adverts (Advertising Cookies). In addition to the cookies we manage ourselves (first party) you may also find cookies managed by
+    trusted partners like Google Analytics (third party). Your acceptance of our Cookie agreement covers both first party and third 
+    party Cookies stored on your device as a result of a visit to our website.</p>
+
+<h4>Cookie Agreement</h4>
+<p>Use of our website is dependent on you agreeing to our use of cookies, though you do have the option to refuse us permission to store
+    certain cookies on your device as shown below. We ask that you click the 'accept' button once you've accepted the cookies you are 
+    willing to allow us (and others) to store on your device and also accepted this agreement. However, if you are not prepared to accept
+    these terms then you should <a href="#CookieManagement">delete any Cookies</a> we've already stored on your device and then close your browser to stop any further use of our site. In this case no cookies from our site should remain stored
+    on your device after you close your browser. Please contact us if you experience any problems in this regard.</p>
+
+<p><i>Note: People in the European Union benefit from <a href="https://github.com/wpqs/MxAutoGDPR/wiki/Backgroud:-Cookie-Law"  target="_blank">legal protection</a> in respect of information like Cookies stored on their devices as consequence 
+    of using an electronic communication network like the internet</i></p>
+
+<h4>Essential Cookies</h4>
+
+<p>The following essential cookies are currently used by this website:</p>
+
+<ul>
+    <li><b>ARRAffinity</b>
+        <ul>
+            <li>Session Cookie</li>
+            <li>Necessary for ensuring each user is always routed to the same machine when balancing the load of our webservers between different machines hosted on the Azure cloud.</li>
+        </ul>
+    </li>    
+    <li><b>.AspNetCore.Antiforgery </b>
+        <ul>
+            <li>Session Cookie</li>
+            <li>Necessary to make the website secure by preventing Cross-Site Request Forgery attacks.</li>
+        </ul>
+    </li>   
+    <li><b>AspNetCore.Identity.Application </b>
+        <ul>
+            <li>Session Cookie</li>
+            <li>Necessary to authenticate users registered with the website.</li>
+        </ul>
+    </li>   
+</ul>
+
+<h4>Functional Cookies</h4>
+
+<ul>
+    <li><b>MxCookieConsent</b>
+        <ul>
+            <li>Permanent Cookie expires after 365 days </li>
+            <li>Necessary to stop the Cookie banner displaying once a user has accepted our Cookie agreement.</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Analytical Cookies</h4>
+
+<ul>
+    <li>No analytical cookies are currently used by this website</li>
+</ul>
+
+<h4>Advertising Cookies</h4>
+
+<ul>
+    <li>No advertising cookies are currently used by this website</li>
+</ul>
+
+<h4>Session Cookies</h4>
+
+<p>Session Cookies should be deleted when a user's browser is closed so they only store information on a user's device whilst there is an active connection 
+    with our website over an electronic communication network.</p>
+
+
+<h4>Permanent Cookies</h4>
+
+<p>Permanent Cookies are stored on a user's device whilst it is connected with our website over an electronic communication network, but are not deleted when 
+    the connection terminates. Therefore the information they contain can be accessed during subsequent connections with our website. However, the information 
+    will be deleted when the Cookie expires, typically after 365 days.</p>
+
+<hr/>
+<h4 id="CookieManagement">Management of Cookies</h4>
+
+<p>The following Cookies stored on your device can be deleted:</p>
+
 <form asp-action="RevokeConsentCookie">
-     <div class="form-horizontal" id="LoadedDiv" style="display:block;">
+    <div class="form-horizontal" id="LoadedDiv" style="display:block;">
         <div class="form-group" >
-            <label class="col-md-2 control-label">Name of Consent Cookie</label>
+            <label class="col-md-2 control-label">Name</label>
             <div class="col-md-4">
                 <input value=@CookieConsentAttribute.CONSENT_COOKIE_NAME readonly />
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Revoke" class="btn btn-default" />
+                <input type="submit" value="Remove" class="btn btn-default" />
             </div>
         </div>
-     </div>
+    </div>
 </form>
 
+
+<p>AskCookieConsent: @(ViewBag.AskCookieConsent)</p>   
+<p>HasCookieConsent: @(ViewBag.HasCookieConsent)</p> 
 
 <a asp-controller="Home" asp-action="Index">Back to Home</a>
 
