@@ -1,4 +1,4 @@
-# AutoGDPR
+# MxAutoGDPR
 ## Implementations of GDPR Automation for various technology stacks
 
 ### Objectives
