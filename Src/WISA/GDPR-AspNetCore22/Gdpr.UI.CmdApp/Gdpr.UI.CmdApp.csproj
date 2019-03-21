@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <Version>1.0.30.0</Version>
+    <Version>1.0.31.0</Version>
     <Product>Gdpr-UI-CmdApp-22</Product>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
