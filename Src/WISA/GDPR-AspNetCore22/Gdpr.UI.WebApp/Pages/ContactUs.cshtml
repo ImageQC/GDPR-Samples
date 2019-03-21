@@ -1,0 +1,67 @@
+﻿@page
+@model Gdpr.UI.WebApp.Pages.ContactModel
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<h2>@ViewData["Title"]</h2>
+<partial name="~/Pages/Shared/_StatusMessage.cshtml" for="StatusMessage" />
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-right">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="text-left">
+            <img alt="rowers" width="500" src="~/images/brain.gif"/>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-right">
+            <h4>Registered office</h4>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="text-left">
+            <address>
+                ImageQC Limited
+                <br/>
+                71-75 Shelton Street
+                <br/>
+                London. WC2H 9JQ
+                <br/>
+                <abbr title="Phone">Tel:</abbr>
+                +44(0)207 859 4359
+                <br/>
+                Email: <a href="mailto:will.stott@imageqc.com">will.stott@imageqc.com</a>
+            </address>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-right">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="text-left">
+            <p><small>ImageQC Ltd. is a private Limited Company, registered in England. Reg No. 09483781.<br/>Director: William Stott. Registered Office: 71-75 Shelton Street, London, England, WC2H 9JQ.</small></p>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Pages/Shared/_Tip.cshtml" for="Tip" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

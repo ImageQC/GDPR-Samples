@@ -1,0 +1,51 @@
+﻿@page
+@model Gdpr.UI.WebApp.Pages.TermsConditionsModel
+@{
+    ViewData["Title"] = "Terms & Conditions";
+}
+
+<h2>@ViewData["Title"]</h2>
+<partial name="~/Pages/Shared/_StatusMessage.cshtml" for="StatusMessage" />
+
+<h6>Ownership</h6>
+<p>
+    The website <a asp-area="" asp-page="Index">https://gdprcore22webapp.azurewebsites.net</a> is owned and operated by ImageQC Limited (the company). The company is registered
+    in England and can be contacted by through its registered office address as given in the <a asp-area="" asp-page="/ContactUs">Contact page</a>.
+</p>
+
+<h6>Use</h6>
+<p>
+    People who access the website (users) agree to the terms of its Disclaimer of Liability and Privacy Statement as 
+    well as agreeing to respect the copyright and reproduction notices. Furthermore, they agree to use the website always
+    for its lawful and intended purpose. Breach of this agreement which is not remedied within 7 days of notification being
+    sent by the company to the email address associated with your login may result in your account being suspended to disable
+    your login as well as other more serious actions being taken against you. The company reserves the right to suspend 
+    a user's account and login without giving a reason or entering into any further correspondence. The company reserves
+    the right to change these Terms and Conditions at any time. The validity, construction and performance of these Terms
+    shall be governed by English law and you hereby submit to the exclusive jurisdiction of the English courts. 
+</p>
+
+<h6>Copyright</h6>
+<p>
+    The company is the owner of the copyright except as otherwise stated. No part of the website may be distributed, 
+    published, re-utilised, extracted, or reproduced in any material form except as permitted by the UK Copyright Designs
+    and Patents Act 1988 and as required by the personal licence that is hereby granted to you by the company for you view
+    the site for your own personal use.
+</p>
+
+<h6>Disclaimer</h6>
+<p>
+    The company and its Executives assume no responsibility for the content of the website or any website to which it 
+    provides links and to the extent permitted by law disclaim all liability in respect of such content. Nothing in the
+    website constitutes professional advice. The company has taken care in the preparation of this website, but make no
+    expressed or implied warranty of any kind and assume no responsibility for errors or omissions. 
+</p>
+
+<partial name="~/Pages/Shared/_Tip.cshtml" for="Tip" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

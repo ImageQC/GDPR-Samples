@@ -32,7 +32,7 @@ namespace Gdpr.UI.WebApp.Data
                     {           //create standard T&C
                         var resGet = await ctrlRepo.GetTermsConditionsAsync(config["WST:Standard"]);
                         rc += resGet;
-                        if (resGet.IsSuccess())
+                        if ((resGet.IsSuccess()) && (resGet.GetResult() != null))
                             wst = resGet.GetResult().Id;
                         else
                         {
@@ -43,8 +43,13 @@ namespace Gdpr.UI.WebApp.Data
                                 resGet = await ctrlRepo.GetTermsConditionsAsync(config["WST:Standard"]);
                                 if (resGet.IsSuccess())
                                 {
-                                    wst = resGet.GetResult().Id;
-                                    recordCnt++;
+                                    if (resGet.GetResult() == null)
+                                        rc.SetError(3150102, MxError.Source.Data, @"wst cannot be created", MxMsgs.MxErrUnexpected);
+                                    else
+                                    {
+                                        wst = resGet.GetResult().Id;
+                                        recordCnt++;
+                                    }
                                 }
                             }
                         }
@@ -53,7 +58,7 @@ namespace Gdpr.UI.WebApp.Data
                     if (rc.IsSuccess())
                     {
                         if (wst == Guid.Empty)
-                            rc.SetError(3150102, MxError.Source.Sys, @"wst Default not found and cannot be created", MxMsgs.MxErrUnexpected);
+                            rc.SetError(3150103, MxError.Source.Sys, @"wst Default not found and cannot be created", MxMsgs.MxErrUnexpected);
                         else
                         {
                             using (IAdminRepository adminRepo = new AdminRepository(conn))
@@ -123,7 +128,7 @@ namespace Gdpr.UI.WebApp.Data
                 }
                 catch(Exception e)
                 {
-                    rc.SetError(3150103, MxError.Source.Exception, e.Message, MxMsgs.MxErrUnknownException, true);
+                    rc.SetError(3150104, MxError.Source.Exception, e.Message, MxMsgs.MxErrUnknownException, true);
                 }
             }
             return rc;

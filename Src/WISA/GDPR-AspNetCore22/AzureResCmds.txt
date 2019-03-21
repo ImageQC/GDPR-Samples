@@ -1,0 +1,93 @@
+AzureResCmds.txt - PowerShell CLI Commands for provisioning and configuring the Azure resources needed by the GDPR-AspNetCore22 Solution
+========================================================================================================================================
+
+XXX gdprcore22dbsvr Admin User name - see WebApp and SQL Server and Vault for value
+YYY gdprcore22dbsvr Admin User password - see WebApp and SQL Server and Vault for value
+AAA is the IP address of your PC - find ingdprcore22dbsvr - Firewalls and virtual networks
+MMM is Primary connection string for FnApp Service Bus Queue Send with EntityPath=mxlogmsg removed from the primaryConnectionString
+HHH Authentication:Microsoft:ClientId
+JJJ Authentication:Microsoft:ClientSecret
+KKK Authentication:Google:ClientId
+LLL Authentication:Google:ClientSecret
+PPP ServiceConfig:ReCaptchaSiteKey
+QQQ ServiceConfig:ReCaptchaSecretKey
+RRR ServiceConfig:SendGridKey
+
+
+WebApp and SQL Server
+---------------------
+
+Notes:
+1. webapp create -name GdprCore22WebApp must be unique as it forms part of the website's URL 
+2. sql server create --name gdprcore22dbsvr must be unique as it is publically accessible and can only be made up of lowercase letters 'a'-'z', the numbers 0-9 and the hyphen. The hyphen may not lead or trail in the name
+3. Take note of the database server name ( gdprcore22dbsvr.database.windows.net) as it is needed when using MSSMS to connect with your Azure database
+4. az sql server firewall-rule create --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0 allows access to Azure Services - see switch in gdprcore22dbsvr - Firewalls and virtual netwworks
+5. az sql server firewall-rule create --start-ip-address AAA --end-ip-address AAA  where AAA is the IP address of your local PC. This allows you to use MSSMS to access the Azure database server, but the rule needs to be updated if your IP address changes - mine does each day. 
+6. Copy the result of az sql db shown-connection-string and replace <username> with XXX and <password> with YYY before issuing az webapp config connection-string set
+	Server=tcp:gdprcore22dbsvr.database.windows.net,1433;Database=GdprCore22;User ID=<username>;Password=<password>;Encrypt=true;Connection Timeout=30;
+7. When debugging set local connection string if local DB is needed 'Server=(localdb)\\mssqllocaldb;Database=GdprCore22;Trusted_Connection=True;MultipleActiveResultSets=true'
+
+
+Commands:
+set XXX, YYY, AAA, MMM, HHH, JJJ, KKK, LLL, PPP, QQQQ, RRR
+
+az account set --subscription AutoGdpr
+az group create --name resAutoGdpr --location "WestEurope"
+az appservice plan create --name AutoGdprPlan --resource-group resAutoGdpr --location "WestEurope" --sku FREE
+
+az webapp create --name GdprCore22WebApp --plan AutoGdprPlan --resource-group resAutoGdpr
+az sql server create --name gdprcore22dbsvr --resource-group resAutoGdpr --location "WestEurope" --admin-user XXX --admin-password YYY
+az sql server firewall-rule create --server gdprcore22dbsvr --resource-group resAutoGdpr --name AllowMyPC --start-ip-address AAA --end-ip-address AAA
+az sql server firewall-rule create --server gdprcore22dbsvr --resource-group resAutoGdpr --name AllowAzure --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
+az sql db create --server gdprcore22dbsvr --resource-group resAutoGdpr --name GdprCore22 --service-objective Basic
+az sql db show-connection-string --name GdprCore22 --server gdprcore22dbsvr --client ado.net --output tsv
+az webapp config connection-string set --connection-string-type SQLAzure --name GdprCore22WebApp --resource-group resAutoGdpr --settings DefaultConnection='Server=tcp:gdprcore22dbsvr.database.windows.net,1433;Database=GdprCore22;User ID=XXX;Password=YYY;Encrypt=true;Connection Timeout=30;' 
+
+az webapp config connection-string set --connection-string-type Custom --name GdprCore22WebApp --resource-group resAutoGdpr --settings AzureWebJobsServiceBus='MMM' 
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'MxLogMsg:AzureServiceBusQueueName=mxlogmsg'
+
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'Authentication:Microsoft:ClientId=HHH'
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'Authentication:Microsoft:ClientSecret=JJJ'
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'Authentication:Google:ClientId=KKK'
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'Authentication:Google:ClientSecret=LLL'
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'ServiceConfig:ReCaptchaSiteKey=PPP'
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'ServiceConfig:ReCaptchaSecretKey=QQQ'
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'ServiceConfig:SendGridKey=RRR'
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'ServiceConfig:SendGridSenderName=MxAutoGDPR Admin'
+az webapp config appsettings set --name GdprCore22WebApp  --resource-group resAutoGdpr --settings 'ServiceConfig:SendGridSenderEmail=admin@imageqc.com'
+
+Deploy to Azure
+---------------
+
+1. Edit Gdpr.UI.CmdApp local.settings.json; change the connection string to Azure Db - Server=tcp:gdprcore22dbsvr.database.windows.net,1433;Database=GdprCore22;User ID=XXX;Password=YYY;Encrypt=true;Connection Timeout=30;
+2. Set Gdpr.UI.CmdApp as startup project and rebuild
+3. Run EF from Package Manager Console with Gdpr.UI.CmdApp as default project to create the Identity tables
+   >Add-Migration AzureCreate
+   >Update-Database
+4. Set Gdpr.Data.Sql Properties - Target Platform Microsoft Azure SQL Database v12
+5. Gdpr.Data.Sql | Publish - Create/Save Profile for Azure
+6. Run AlterAfterCreateTables.sql on Azure Db using MSSMS
+7. Publish Gdpr.UI.WebApp
+
+Testing on Azure
+----------------
+
+1. Edit Gdpr.Domain.Tests ConfigSettings.cs; add AzureDbConnectionStr with value of Azure database connection string 
+2. Edit Gdpr.Domain.Tests RepositoryBaseFixture.cs; change LocalDbConnectionStr to AzureDbConnectionStr
+3. Edit Gdpr.Domain.Tests RepositoryBaseFixture.cs; change LocalDbConnectionStr to AzureDbConnectionStr
+4. Run Tests
+
+Before checking-in changes
+--------------------------
+
+1. Edit Gdpr.Domain.Tests RepositoryBaseFixture.cs; change AzureDbConnectionStr to LocalDbConnectionStr
+2. Edit Gdpr.Domain.Tests RepositoryBaseFixture.cs; change AzureDbConnectionStr to LocalDbConnectionStr
+3. Edit Gdpr.Domain.Tests ConfigSettings.cs; replace database user name and password to XXX and YYY
+4. Set Gdpr.Data.Sql Properties - Target Platform Microsoft SQL 2016 Database
+5. Run Tests
+6. Gdpr.UI.WebApp appsettings.json - remove database username and password
+7. Set Package, Assembly and File Versions - see MxVersion numbering in MyDevNotes
+
+
+
+[end]

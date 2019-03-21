@@ -1,0 +1,76 @@
+﻿@page
+@model Gdpr.UI.WebApp.Pages.AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+
+<h2>About @Startup.WebAppName</h2>
+<partial name="~/Pages/Shared/_StatusMessage.cshtml" for="StatusMessage" />
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-right">
+            <h4>Putting control of personal data in your own hands...</h4>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="text-left">
+            <P> This website is a reference implementation of <a href="https://github.com/wpqs/MxAutoGDPR/wiki" target="_blank">MxAutoGDPR</a>.
+             </P>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-right">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="text-left">
+            <img alt="rowers" width="500" src="~/images/Rowers400-BW.png"/>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-right">
+            <p>Creator</p>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="text-left">
+            <p>
+                The @Startup.WebAppName website was created by Will Stott. Will has over 25 years experience working as contractor/consultant 
+                for a wide range of companies in UK and Europe including IBM, Cap-Gemini, Logica CMG and Accenture. However, 
+                for the last ten years most of his time has been spent doing research at University College London (UCL) 
+                for the United Kingdom Collaborative Trial of Ovarian Cancer Screening (UKCTOCS). This large-scale clinical
+                trial was designed <i>to establish the effect of early detection by screening on ovarian cancer mortality</i>. 
+                It aims to provide evidence justifying a national screening programme for ovarian cancer in the UK. 
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-right">
+            <p>Technical Details</p>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="text-left">
+            <p>The @Startup.WebAppName website is built using Visual Studio 2017, ASP.NET Core 2.2 and Razor Pages as well as various other tools 
+                and libraries. It contains the following main components:</p>
+            <ul>
+                <li>@Startup.WebAppName rev @Startup.WebAppVersion</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Pages/Shared/_Tip.cshtml" for="Tip" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

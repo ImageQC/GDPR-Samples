@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Gdpr.UI.WebApp-927C3138-605F-47BF-A7DF-AEA3B0F6BF19</UserSecretsId>
-    <Version>1.1.31.0</Version>
+    <Version>1.1.32.0</Version>
     <NeutralLanguage>en</NeutralLanguage>
     <Copyright>2018 ImageQC Limited</Copyright>
     <Authors>Will Stott</Authors>

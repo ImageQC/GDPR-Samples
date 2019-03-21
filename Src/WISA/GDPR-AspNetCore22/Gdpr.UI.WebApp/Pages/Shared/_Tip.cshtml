@@ -1,0 +1,6 @@
+﻿@model string
+@if (string.IsNullOrEmpty(Model) == false)
+{
+<br />
+<p class="text-info small">Tip: @Html.Raw(Model)</p>
+}
