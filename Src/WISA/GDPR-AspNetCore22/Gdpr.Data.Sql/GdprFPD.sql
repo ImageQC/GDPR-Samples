@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[GdprFPD]
+(
+    [Id] UNIQUEIDENTIFIER CONSTRAINT [DF_GdprFPD_Id] DEFAULT NEWID() NOT NULL PRIMARY KEY NONCLUSTERED, 
+    [Name] NVARCHAR(40) NOT NULL, 
+    [ProcessingBasis] NVARCHAR(MAX) NULL, 
+    [ProcessingPurpose] NVARCHAR(MAX) NULL, 
+    [ConsentRefusal] NVARCHAR(MAX) NULL, 
+    [ConsentCode] INT CONSTRAINT [DF_GdprFPD_ConsentCode] DEFAULT 0 NOT NULL, 
+    [Status] INT CONSTRAINT [DF_GdprFPD_Status] DEFAULT 0 NOT NULL, 
+    [ProcFlag] INT CONSTRAINT [DF_GdprFPD_ProcFlag] DEFAULT 0  NOT NULL
+)
+GO;
+CREATE UNIQUE CLUSTERED INDEX [IX_GdprFPD_Name] ON [dbo].[GdprFPD] ([Name])
+GO;

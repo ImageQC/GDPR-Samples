@@ -33,6 +33,7 @@ namespace Gdpr.UI.WebApp
         public const int AreasIdentityPagesAccountRegisterFirst = 3010101; //first error code in class xxx.cs
         public const int AreasIdentityPagesAccountExternalLoginFirst = 3020101; //first error code in class xxx.cs
         public const int ErrorFirst = 3030101; //first error code in class xxx.cs
+        public const int PagesIndexFirst = 3040101; //first error code in class xxx.cs
 
     }
 }

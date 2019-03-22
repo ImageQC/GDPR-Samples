@@ -16,6 +16,11 @@ namespace Gdpr.Domain
 
         //Errors 
         public const string MxErrTest = "MxErrTest";
+        public const string MxErrDbConnClosed = "MxErrDbConnClosed";
+        public const string MxErrDbConnNotSet = "MxErrDbConneNotSet";
+        public const string MxErrDbConnException = "MxErrDbConnException";
+        public const string MxErrDbQueryException = "MxErrDbQueryException";
+        public const string MxErrDbCmdException = "MxErrDbCmdException";
         //"Error test. Coding defect. Please report this problem"
 
     }

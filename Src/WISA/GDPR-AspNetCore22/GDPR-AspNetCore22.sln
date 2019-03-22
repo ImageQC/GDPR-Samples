@@ -15,8 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdpr.UI.CmdApp", "Gdpr.UI.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{9627D5EB-0456-4AA3-BCFC-418A1DA8A964}"
 	ProjectSection(SolutionItems) = preProject
+		..\GDPR-AspNetCore21\Gdpr.Data.Sql\AlterAfterCreateGdprTables.sql = ..\GDPR-AspNetCore21\Gdpr.Data.Sql\AlterAfterCreateGdprTables.sql
 		AlterAfterCreateIdentityTables.sql = AlterAfterCreateIdentityTables.sql
 		AzureResCmds.txt = AzureResCmds.txt
+		..\GDPR-AspNetCore21\Gdpr.Data.Sql\DropAllGdprTables.sql = ..\GDPR-AspNetCore21\Gdpr.Data.Sql\DropAllGdprTables.sql
 	EndProjectSection
 EndProject
 Global

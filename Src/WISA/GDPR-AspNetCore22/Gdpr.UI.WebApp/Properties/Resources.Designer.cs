@@ -70,6 +70,51 @@ namespace Gdpr.UI.WebApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Database command failed.  Error in SQL statement, parameters or table. Please report this problem..
+        /// </summary>
+        internal static string MxErrDbCmdException {
+            get {
+                return ResourceManager.GetString("MxErrDbCmdException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot contact the database. Connection cannot be opened at this time. Please try again later.
+        /// </summary>
+        internal static string MxErrDbConnClosed {
+            get {
+                return ResourceManager.GetString("MxErrDbConnClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data connection error. Connection details may be incorrect. Please report this problem.
+        /// </summary>
+        internal static string MxErrDbConnException {
+            get {
+                return ResourceManager.GetString("MxErrDbConnException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database connection invalid. Connection string possibily not set. Please report this problem.
+        /// </summary>
+        internal static string MxErrDbConnNotSet {
+            get {
+                return ResourceManager.GetString("MxErrDbConnNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database query failed. Error in SQL statement, parameters or table. Please report this problem..
+        /// </summary>
+        internal static string MxErrDbQueryException {
+            get {
+                return ResourceManager.GetString("MxErrDbQueryException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error test. Nothing to worry about. Please ignore this message.
         /// </summary>
         internal static string MxErrTest {

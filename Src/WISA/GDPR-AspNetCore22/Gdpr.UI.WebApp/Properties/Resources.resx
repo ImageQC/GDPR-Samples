@@ -120,6 +120,21 @@
   <data name="MxErrAccountLockout" xml:space="preserve">
     <value>Your account has been temporarily disabled. This is because you have entered an incorrect password a number of times. Please try again after the lockout period has ended</value>
   </data>
+  <data name="MxErrDbCmdException" xml:space="preserve">
+    <value>Database command failed.  Error in SQL statement, parameters or table. Please report this problem.</value>
+  </data>
+  <data name="MxErrDbConnClosed" xml:space="preserve">
+    <value>Cannot contact the database. Connection cannot be opened at this time. Please try again later</value>
+  </data>
+  <data name="MxErrDbConnException" xml:space="preserve">
+    <value>Data connection error. Connection details may be incorrect. Please report this problem</value>
+  </data>
+  <data name="MxErrDbConnNotSet" xml:space="preserve">
+    <value>Database connection invalid. Connection string possibily not set. Please report this problem</value>
+  </data>
+  <data name="MxErrDbQueryException" xml:space="preserve">
+    <value>Database query failed. Error in SQL statement, parameters or table. Please report this problem.</value>
+  </data>
   <data name="MxErrTest" xml:space="preserve">
     <value>Error test. Nothing to worry about. Please ignore this message</value>
   </data>
