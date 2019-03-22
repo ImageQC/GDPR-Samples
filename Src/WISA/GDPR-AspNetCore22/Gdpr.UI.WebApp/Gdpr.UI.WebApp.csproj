@@ -5,7 +5,7 @@
     <UserSecretsId>aspnet-Gdpr.UI.WebApp-FE0D2C1A-A76D-4488-A2D4-F8F1459D96A8</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.32.0</Version>
+    <Version>1.0.33.0</Version>
     <Product>Gdpr-UI-WebApp-22</Product>
   </PropertyGroup>
 
