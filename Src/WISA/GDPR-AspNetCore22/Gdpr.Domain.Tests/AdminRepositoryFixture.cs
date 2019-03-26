@@ -8,12 +8,12 @@ namespace Gdpr.DomainTests
     public class AdminRepositoryFixture : IDisposable
     {
         private bool disposed = false;
-        public AdminRepository Db { get; private set; }
+        public AdminRepo Db { get; private set; }
         public AdminRepositoryFixture()
         {
             MxUserMsg.Init(Assembly.GetExecutingAssembly(), MxMsgs.SupportedCultures);
 
-            Db = new AdminRepository(ConfigSettings.LocalDbConnectionStr);
+            Db = new AdminRepo(ConfigSettings.LocalDbConnectionStr);
         }
 
         public void Dispose()

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gdpr.Domain
 {
-    public class SysRepository : RepositoryBase, ISysRepository  //03-12-18
+    public class SystemRepo : RepositoryBase, ISystemRepo  //03-12-18
     {
         private bool disposed = false;
         protected override void Dispose(bool disposing)
@@ -30,14 +30,14 @@ namespace Gdpr.Domain
 
             }
         }
-        public SysRepository(string connection) : base(connection) { }
+        public SystemRepo(string connection) : base(connection) { }
 
-        public async Task<MxReturnCode<GdprRpd>> GetUserAsync(string email)
+        public async Task<MxReturnCode<GdprRpd>> GetRpdAsync(string email)
         {
             MxReturnCode<GdprRpd> rc = new MxReturnCode<GdprRpd>("SysRepository. GetUserAsync()");
 
             if (String.IsNullOrWhiteSpace(email))
-                rc.SetError(1030101, MxError.Source.Param, "invalid email");
+                rc.SetError(1040101, MxError.Source.Param, "invalid email");
             else
             {
                 try
@@ -51,17 +51,17 @@ namespace Gdpr.Domain
                 }
                 catch (Exception e)
                 {
-                    rc.SetError(1030102, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
+                    rc.SetError(1040102, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
                 }
             }
             return rc;
         }
-        public async Task<MxReturnCode<bool>> CreateUserAsync(string email)
+        public async Task<MxReturnCode<bool>> CreateRpdAsync(string email)
         {
             MxReturnCode<bool> rc = new MxReturnCode<bool>("SysRepository.CreateUserAsync()");
 
             if (String.IsNullOrWhiteSpace(email))
-                rc.SetError(1030201, MxError.Source.Param, "invalid email");
+                rc.SetError(1040201, MxError.Source.Param, "invalid email");
             else
             {
                 try
@@ -77,7 +77,7 @@ namespace Gdpr.Domain
                 }
                 catch (Exception e)
                 {
-                    rc.SetError(1030202, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
+                    rc.SetError(1040202, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
                 }
             }
             return rc;

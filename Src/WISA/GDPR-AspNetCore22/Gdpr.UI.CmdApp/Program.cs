@@ -29,18 +29,18 @@ namespace Gdpr.UI.CmdApp
                 rc.SetError(2010101, MxError.Source.AppSetting, "config not built or ConnectionStrings:DefaultConnection not found");
             else
             {
-                using (IAdminRepository repo = new AdminRepository(conn))
+                using (IAdminRepo repo = new AdminRepo(conn))
                 {
-                    rc += await repo.GetRoleCountAsync();
+                    rc += await repo.GetUrdCountAsync();
                 }
-                if (rc.IsSuccess())
+                if (rc.IsSuccess(true))
                 {
                     Console.WriteLine($"Roles found = {rc.GetResult()}");
                     rc.SetResult(0);
                 }
             }
-            Console.WriteLine(rc.IsError() ? rc.GetErrorUserMsg() : $"Hello World!");
-            Console.WriteLine(rc.IsError() ? rc.GetErrorTechMsg(): "no error");
+            Console.WriteLine(rc.IsError(true) ? rc.GetErrorUserMsg() : $"Hello World!");
+            Console.WriteLine(rc.IsError(true) ? rc.GetErrorTechMsg(): "no error");
 
             return rc.GetResult();
         }

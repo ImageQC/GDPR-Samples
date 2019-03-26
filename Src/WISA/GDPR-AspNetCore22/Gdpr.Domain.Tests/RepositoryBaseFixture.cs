@@ -13,7 +13,7 @@ namespace Gdpr.DomainTests
         {
             MxUserMsg.Init(Assembly.GetExecutingAssembly(), MxMsgs.SupportedCultures);
 
-            Db = new AdminRepository(ConfigSettings.LocalDbConnectionStr);
+            Db = new AdminRepo(ConfigSettings.LocalDbConnectionStr);
         }
 
         public void Dispose()

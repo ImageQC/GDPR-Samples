@@ -38,9 +38,9 @@ namespace Gdpr.UI.WebApp.Pages
                 if (loggedInUser?.EmailConfirmed == false)
                     msg += "Check your emails to complete your registration";
 
-                using (IAdminRepository repository = new AdminRepository(_config?.GetConnectionString("DefaultConnection")))
+                using (IAdminRepo repo = new AdminRepo(_config?.GetConnectionString("DefaultConnection")))
                 {
-                    var resCnt = await repository.GetRoleCountAsync();
+                    var resCnt = await repo.GetUrdCountAsync();
                     rc += resCnt;
                     if (rc.IsError())
                         DatabaseStatus = "Database access failed";
@@ -55,7 +55,7 @@ namespace Gdpr.UI.WebApp.Pages
             {
                 rc.SetError(3040101, MxError.Source.Exception, e.Message, MxMsgs.MxErrUnknownException, true);
             }
-            if (rc.IsError())
+            if (rc.IsError(true))
                 SetPageStatusMsg(rc.GetErrorUserMsgHtml(userID), ExistingMsg.Overwrite);
             else
                 SetPageStatusMsg(msg, ExistingMsg.Overwrite);

@@ -5,7 +5,6 @@ namespace Gdpr.Domain.Models
 {
     public class GdprUrd
     {
-        public enum StatusVal { NotImplemented = 0, Published = 1 };
         public GdprUrd()
         {
             Rpds = new List<GdprRpd>();
@@ -14,11 +13,12 @@ namespace Gdpr.Domain.Models
 
         public override string ToString()
         {
-            return String.Format("Name={0}, RoleCode={1}, Status={2}, Purpose.Length={3}, Description.Length={4}, Id={5}", Name, RoleCode, Status, ((Purpose == null) ? -1 : Purpose.Length), (Description == null) ? -1 : Description.Length, Id);
+            return $"Name={Name ?? "[null]"}, RoleCode={RoleCode}, Status={Status}, Purpose.Length={(Purpose ?? "").Length}, Description.Length={(Description ?? "").Length}, Id={Id.ToString()}";
         }
 
         public static bool IsValidRoleCode(int code) { return (code >= 0) ? true : false; }
-        public static bool IsValidStatus(int status) { return Enum.IsDefined(typeof(StatusVal), status); }
+        public static bool IsValidStatus(int status) { return Enum.IsDefined(typeof(UrdStatus), status); }
+
         public Guid Id { get; set; }
         public string Name { get; set; }
         public int RoleCode { get; set; }

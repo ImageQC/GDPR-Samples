@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <None Include="Models\GdprCore22Context.cs" />
+    <None Include="GdprDomain.cs" />
+    <None Include="Interfaces\IGdprDomain.cs" />
   </ItemGroup>
 
 </Project>

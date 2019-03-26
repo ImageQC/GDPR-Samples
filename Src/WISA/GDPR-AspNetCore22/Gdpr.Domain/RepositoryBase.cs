@@ -61,7 +61,7 @@ namespace Gdpr.Domain
             MxReturnCode<bool> rc = new MxReturnCode<bool>("CheckConnection()", false);
 
             if (db == null)
-                rc.SetError(1010101, MxError.Source.AppSetting, String.Format("invalid connection {0}", DbConnectionForDisplay ?? "null", MxMsgs.MxErrDbConnNotSet));
+                rc.SetError(1030101, MxError.Source.AppSetting, String.Format("invalid connection {0}", DbConnectionForDisplay ?? "null", MxMsgs.MxErrDbConnNotSet));
             else
             {
                 try
@@ -69,18 +69,16 @@ namespace Gdpr.Domain
                     if (db.State != ConnectionState.Open)
                         db.Open();
                     if (db.State != ConnectionState.Open)
-                        rc.SetError(1010102, MxError.Source.Sys, String.Format("cannot open database connection {0}", DbConnectionForDisplay ?? "[null]"), MxMsgs.MxErrDbConnClosed);
+                        rc.SetError(1030102, MxError.Source.Sys, String.Format("cannot open database connection {0}", DbConnectionForDisplay ?? "[null]"), MxMsgs.MxErrDbConnClosed);
                     else
                         rc.SetResult(true);
                 }
                 catch (Exception e)
                 {
-                    rc.SetError(1010103, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbConnException, true);
+                    rc.SetError(1030103, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbConnException, true);
                 }
             }
             return rc;
         }
-
-
     }
 }

@@ -19,8 +19,8 @@ namespace Gdpr.DomainTests
         {
             var repo = new RepositoryBase(ConfigSettings.EmptyDbConnectionStr);
             var res = repo.CheckConnection();
-            Assert.True(res.IsError());
-            Assert.Equal("error 1010103: Data connection error. Connection details may be incorrect. Please report this problem.", res.GetErrorUserMsg());
+            Assert.True(res.IsError(true));
+            Assert.Equal("error 1030103: Data connection error. Connection details may be incorrect. Please report this problem.", res.GetErrorUserMsg());
         }
 
         [Fact]

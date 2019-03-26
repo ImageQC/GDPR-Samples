@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Gdpr.Domain;
 using Gdpr.UI.WebApp.Areas.Identity.Pages.Account;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -64,6 +65,7 @@ namespace Gdpr.UI.WebApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()                   //add support for roles - https://github.com/aspnet/Identity/issues/1884
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -107,6 +109,8 @@ namespace Gdpr.UI.WebApp
                 options.SslPort = _isDevelopment ? 44357 : 443;
                 options.Filters.Add(new RequireHttpsAttribute());
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<IMxIdentityDb, MxIdentityDb>();
 
             services.AddSingleton<IEmailSender, EmailSender>();
             services.Configure<ServiceConfig>(Configuration.GetSection("ServiceConfig"));

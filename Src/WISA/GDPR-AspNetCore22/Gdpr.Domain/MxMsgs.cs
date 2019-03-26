@@ -34,7 +34,10 @@ namespace Gdpr.Domain
 
     public static class ErrorCodeList
     {
-        public const int WebAppIndexFirst = 1010101; //first error code in class xxx.cs
-
+        public const int AdminRepoFirst = 1010101; //first error code in class xxx.cs
+        public const int ControllerRepoFirst = 1020101; //first error code in class xxx.cs
+        public const int RepositoryBaseFirst = 1030101; //first error code in class xxx.cs
+        public const int SystemRepoFirst = 1040101; //first error code in class xxx.cs
+        public const int GdprSeedRepoFirst = 1050101; //first error code in class xxx.cs
     }
 }
