@@ -110,7 +110,7 @@ namespace Gdpr.UI.WebApp
                 options.Filters.Add(new RequireHttpsAttribute());
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddScoped<IMxIdentityDb, MxIdentityDb>();
+            services.AddScoped<IMxIdentitySeedDb, MxIdentitySeedDb>();
 
             services.AddSingleton<IEmailSender, EmailSender>();
             services.Configure<ServiceConfig>(Configuration.GetSection("ServiceConfig"));

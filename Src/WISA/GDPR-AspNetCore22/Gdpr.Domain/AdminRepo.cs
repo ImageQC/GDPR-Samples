@@ -101,21 +101,36 @@ namespace Gdpr.Domain
                         };
                         var sql =
                             "INSERT INTO GdprUrd(Name, RoleCode, Status, Purpose, Description) VALUES(@Name, @RoleCode, @Status, @Purpose, @Description);";
-                        var res = await db.ExecuteAsync(sql, role);
-                        if (res != 1)
-                            rc.SetError(1010202, MxError.Source.Data, $"invalid record data {role}");
+                        var resultCreateUrd = await db.ExecuteAsync(sql, role);
+                        if (resultCreateUrd != 1)
+                            rc.SetError(1010202, MxError.Source.Data, $"unable to create role={name}");
                         else
                         {
-                            //ASPNETRole ID,
-                            //Get WST from Title
-                            //Create WXR
-                            rc.SetResult(true);
+                            var resGetUrd = await GetUrdAsync(name);
+                            rc += resGetUrd;
+                            if ((rc.IsError()) || (resGetUrd.GetResult() == null))
+                                rc.SetError(1010203, MxError.Source.Data, $"unable to access new role={name}");
+                            {
+                                GdprWxr wxr = new GdprWxr
+                                {
+                                    UrdId = resGetUrd.GetResult().Id,
+                                    WstId = wstId
+                                };
+                                sql = "INSERT INTO GdprWxr(@UrdId, WstId) VALUES(@UrdId, @WstId);";
+                                var resultCreateWxr = await db.ExecuteAsync(sql, wxr);
+                                if (resultCreateWxr != 1)
+                                    rc.SetError(1010204, MxError.Source.Data, $"unable to create WXR for role={name}, WstId={wstId}");
+                                else
+                                {
+                                    rc.SetResult(true);
+                                }
+                            }
                         }
                     }
                 }
                 catch (Exception e)
                 {
-                    rc.SetError(1010203, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
+                    rc.SetError(1010205, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
                 }
             }
             return rc;
@@ -131,7 +146,6 @@ namespace Gdpr.Domain
             {
                 try
                 {
-
                     if ((rc += CheckConnection()).IsSuccess())
                     {
                         var sql = "SELECT * FROM GdprUrd WHERE Name = @Name";
@@ -147,22 +161,22 @@ namespace Gdpr.Domain
             return rc;
         }
 
-        public async Task<MxReturnCode<bool>> UpdateUrdAsync(GdprUrd role, int roleCode, UrdStatus roleStatus, string purpose, string description)
+        public async Task<MxReturnCode<bool>> UpdateUrdAsync(string roleName, int roleCode, UrdStatus roleStatus, string purpose, string description)
         {
-            MxReturnCode<bool> rc = new MxReturnCode<bool>($"AdminRepository.UpdateUrdAsync({role?.Name ?? "[null"})");
+            MxReturnCode<bool> rc = new MxReturnCode<bool>($"AdminRepository.UpdateUrdAsync({roleName ?? "[null]"})");
 
-            if ((role == null) || (RepositoryBase.IsGuidSet(role.Id) == false) || String.IsNullOrWhiteSpace(purpose) || String.IsNullOrWhiteSpace(description) || (GdprUrd.IsValidRoleCode(roleCode) == false))
-                rc.SetError(1010401, MxError.Source.Param, "role is null, role.Id is not set, purpose or description is null or empty, or rolecode is invalid");
+            if (String.IsNullOrWhiteSpace(roleName) || String.IsNullOrWhiteSpace(purpose) || String.IsNullOrWhiteSpace(description) || (GdprUrd.IsValidRoleCode(roleCode) == false))
+                rc.SetError(1010401, MxError.Source.Param, "roleName, purpose or description is null or empty, or rolecode is invalid");
             else
             {
                 try
                 {
                     if ((rc += CheckConnection()).IsSuccess())
                     {
-                        var sql = "UPDATE GdprUrd SET RoleCode = @RoleCode, Status = @Status, Purpose = @Purpose, Description = @Description WHERE Id = @Id;";
-                        var res = await db.ExecuteAsync(sql, new { RoleCode = roleCode, Status = (int)roleStatus, Purpose = purpose, Description = description, Id = role.Id });
+                        var sql = "UPDATE GdprUrd SET RoleCode = @RoleCode, Status = @Status, Purpose = @Purpose, Description = @Description WHERE Name = @Name;";
+                        var res = await db.ExecuteAsync(sql, new { RoleCode = roleCode, Status = (int)roleStatus, Purpose = purpose, Description = description, Name = roleName });
                         if (res != 1)
-                            rc.SetError(1010402, MxError.Source.Data, $"record not updated: name={role?.Name ?? "[null]"}");
+                            rc.SetError(1010402, MxError.Source.Data, $"record not updated: Name={roleName}");
                         else
                             rc.SetResult(true);
                     }
@@ -249,7 +263,8 @@ namespace Gdpr.Domain
             }
             return rc;
         }
-       
+
+
         public async Task<MxReturnCode<GdprUrd>> GetUrdAsync(GdprRpd user)
         {
             var res = await db.QuerySingleAsync<int>("SELECT COUNT(*) FROM GdprUrd;");

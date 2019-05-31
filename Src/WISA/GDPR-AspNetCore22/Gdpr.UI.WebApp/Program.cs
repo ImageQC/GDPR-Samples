@@ -31,12 +31,12 @@ namespace Gdpr.UI.WebApp
                         rc.SetError(3050101, MxError.Source.Sys, "scope.ServiceProvider is null");
                     else
                     {
-                        var mxIdentityDb = services.GetRequiredService<IMxIdentityDb>(); 
-                        if (mxIdentityDb == null)
+                        var mxIdentitySeedDb = services.GetRequiredService<IMxIdentitySeedDb>(); 
+                        if (mxIdentitySeedDb == null)
                             rc.SetError(3050102, MxError.Source.Sys, "mxIdentityDb is null");
                         else
                         {
-                            rc = await mxIdentityDb.SeedDatabaseAsync();
+                            rc = await mxIdentitySeedDb.SetupAsync();
                             if (rc.IsSuccess(true))
                             {
                                 host.Run(); //calls Startup.Configure()

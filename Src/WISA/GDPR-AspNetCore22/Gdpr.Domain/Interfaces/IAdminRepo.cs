@@ -12,8 +12,7 @@ namespace Gdpr.Domain
         Task<MxReturnCode<bool>> IsExistUrdAsync(string name);
         Task<MxReturnCode<bool>> CreateUrdAsync(string name, int roleCode, UrdStatus roleStatus, string purpose, string description, Guid wstId);
         Task<MxReturnCode<GdprUrd>> GetUrdAsync(string name);
-
-        Task<MxReturnCode<bool>> UpdateUrdAsync(GdprUrd role, int roleCode, UrdStatus roleStatus, string purpose, string description);
+        Task<MxReturnCode<bool>> UpdateUrdAsync(string name, int roleCode, UrdStatus roleStatus, string purpose, string description);
         Task<MxReturnCode<bool>> DeleteUrdAsync(string name);
         Task<MxReturnCode<int>> GetUrdCountAsync();
         Task<MxReturnCode<List<GdprUrd>>> GetUrdAllAsync();

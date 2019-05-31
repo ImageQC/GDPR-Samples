@@ -96,7 +96,7 @@ namespace Gdpr.Domain
             MxReturnCode<bool> rc = new MxReturnCode<bool>($"ControllerRepository.DeleteWstAsync({title ?? "[null]"})", false);
 
             if (string.IsNullOrWhiteSpace(title))
-                rc.SetError(1010301, MxError.Source.Param, "role is null");
+                rc.SetError(1020301, MxError.Source.Param, "role is null");
             else
             {
                 try
@@ -106,13 +106,13 @@ namespace Gdpr.Domain
                         var sqlFind = "SELECT * FROM GdprWst WHERE Title = @Title";
                         var resFind = await db.QuerySingleOrDefaultAsync<GdprWst>(sqlFind, new { Title = title });
                         if (resFind == null)
-                            rc.SetError(1010302, MxError.Source.Data, $"{title} not found");
+                            rc.SetError(1020302, MxError.Source.Data, $"{title} not found");
                         else
                         {
                             var sql = "DELETE FROM GdprWst WHERE Id = @Id";
                             var res = await db.ExecuteAsync(sql, new { Id = resFind.Id });
                             if (res != 1)
-                                rc.SetError(1010303, MxError.Source.Data, $"Wst record not deleted Id={resFind.Id}, title={title}");
+                                rc.SetError(1020303, MxError.Source.Data, $"Wst record not deleted Id={resFind.Id}, title={title}");
                             else
                                 rc.SetResult(true);
                         }
@@ -120,7 +120,7 @@ namespace Gdpr.Domain
                 }
                 catch (Exception e)
                 {
-                    rc.SetError(1010303, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
+                    rc.SetError(1020304, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
                 }
             }
             return rc;
@@ -131,7 +131,7 @@ namespace Gdpr.Domain
             MxReturnCode<GdprWst> rc = new MxReturnCode<GdprWst>("ControllerRepository.GetWstAsync()");
 
             if (String.IsNullOrWhiteSpace(title))
-                rc.SetError(1010401, MxError.Source.Param, "title is null or empty");
+                rc.SetError(1020401, MxError.Source.Param, "title is null or empty");
             else
             {
                 try
@@ -145,7 +145,7 @@ namespace Gdpr.Domain
                 }
                 catch (Exception e)
                 {
-                    rc.SetError(1010402, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
+                    rc.SetError(1020402, MxError.Source.Exception, e.Message, MxMsgs.MxErrDbQueryException);
                 }
             }
             return rc;

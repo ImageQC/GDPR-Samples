@@ -6,8 +6,9 @@ using MxReturnCode;
 
 namespace Gdpr.UI.WebApp.Data
 {
-    public interface IMxIdentityDb
+    public interface IMxIdentitySeedDb
     {
-        Task<MxReturnCode<int>> SeedDatabaseAsync();
+        Task<MxReturnCode<int>> SetupAsync();
+        Task<MxReturnCode<int>> ResetAsync();
     }
 }

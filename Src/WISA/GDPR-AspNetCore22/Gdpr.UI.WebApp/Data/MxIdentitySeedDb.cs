@@ -10,13 +10,13 @@ using MxReturnCode;
 
 namespace Gdpr.UI.WebApp.Data
 {
-    public class MxIdentityDb : IMxIdentityDb
+    public class MxIdentitySeedDb : IMxIdentitySeedDb
     {
         private RoleManager<IdentityRole> _roleManager;
         private UserManager<IdentityUser> _userManager;
         private IConfiguration _config;
 
-        public MxIdentityDb(IConfiguration config, RoleManager<IdentityRole> roleManager,
+        public MxIdentitySeedDb(IConfiguration config, RoleManager<IdentityRole> roleManager,
             UserManager<IdentityUser> userManager)
         {
             _roleManager = roleManager;
@@ -24,19 +24,19 @@ namespace Gdpr.UI.WebApp.Data
             _config = config;
         }
 
-        public async Task<MxReturnCode<int>> SeedDatabaseAsync()
+        public async Task<MxReturnCode<int>> SetupAsync()
         {
-            MxReturnCode<int> rc = new MxReturnCode<int>("MxIdentityDb.SeedDatabaseAsync()");
+            MxReturnCode<int> rc = new MxReturnCode<int>("MxIdentitySeedDb.SetupAsync()");
 
             try
             {
                 using (var gdprSeedRepo = new GdprSeedRepo(_config?.GetConnectionString("DefaultConnection"))) //could also be GdprSeedRepoDummy
                 {
-                    var resWst = await CreateStdTermsConditions(gdprSeedRepo);
+                    var resWst = await SeedStdTermsConditions(gdprSeedRepo);
                     rc += resWst;
                     if (rc.IsSuccess())
                     {
-                        var wst = resWst.GetResult();
+                        //var wst = resWst.GetResult();
 
                         //var resRole = await SeedStdUrdRole(gdprSeedRepo, AdminRepo.GdprUrdAdmin, wst);
                         //rc += resRole;
@@ -83,12 +83,71 @@ namespace Gdpr.UI.WebApp.Data
             return rc;
         }
 
-        private async Task<MxReturnCode<Guid>> CreateStdTermsConditions(GdprSeedRepo gdprSeedRepo)
+        public async Task<MxReturnCode<int>> ResetAsync()
+        {
+            MxReturnCode<int> rc = new MxReturnCode<int>("MxIdentitySeedDb.ResetAsync()");
+
+            try
+            {
+                using (var gdprSeedRepo = new GdprSeedRepo(_config?.GetConnectionString("DefaultConnection"))) //could also be GdprSeedRepoDummy
+                {
+                    var resWst = await DeseedStdTermsConditions(gdprSeedRepo);
+                    rc += resWst;
+                    if (rc.IsSuccess())
+                    {
+                        var wst = resWst.GetResult();
+
+                        //var resRole = await SeedStdUrdRole(gdprSeedRepo, AdminRepo.GdprUrdAdmin, wst);
+                        //rc += resRole;
+                        //if (rc.IsSuccess())
+                        //{
+                        //    resRole = await SeedStdUrdRole(gdprSeedRepo, AdminRepo.GdprUrdController, wst);
+                        //    rc += resRole;
+                        //    if (rc.IsSuccess())
+                        //    {
+                        //        resRole = await SeedStdUrdRole(gdprSeedRepo, AdminRepo.GdprUrdStandard, wst);
+                        //        rc += resRole;
+                        //        if (rc.IsSuccess())
+                        //        {
+                        //            resRole = await SeedStdUrdRole(gdprSeedRepo, AdminRepo.GdprUrdSystem, wst);
+                        //            rc += resRole;
+                        //            if (rc.IsSuccess())
+                        //            {
+                        //                resRole = await SeedStdUrdRole(gdprSeedRepo, AdminRepo.GdprUrdGuest, wst);
+                        //                rc += resRole;
+                        //                if (rc.IsSuccess())
+                        //                {
+                        //                    resRole = await SeedStdUrdRole(gdprSeedRepo, AdminRepo.GdprUrdGhost, wst);
+                        //                    rc += resRole;
+                        //                    if (rc.IsSuccess())
+                        //                    {
+
+                        //                        //create GoldUser - will.stott@maximodex.com
+
+                        //                        rc.SetResult(0);
+                        //                    }
+                        //                }
+                        //            }
+                        //        }
+                        //    }
+                        //}
+                        rc.SetResult(0);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                rc.SetError(3060201, MxError.Source.Exception, e.Message, MxMsgs.MxErrUnexpected);
+            }
+            return rc;
+        }
+
+        private async Task<MxReturnCode<Guid>> SeedStdTermsConditions(GdprSeedRepo gdprSeedRepo)
         {
             MxReturnCode<Guid> rc = new MxReturnCode<Guid>("MxIdentityDb.CreateStdTermsConditions()");
 
             if (gdprSeedRepo == null)
-                rc.SetError(3060201, MxError.Source.Param, "gdprSeedRepo is null");
+                rc.SetError(3060301, MxError.Source.Param, "gdprSeedRepo is null");
             else
             {
                 var resGetExisting = await gdprSeedRepo.GetWstAsync(_config["WST:Standard"]);
@@ -108,13 +167,13 @@ namespace Gdpr.UI.WebApp.Data
                             if (rc.IsSuccess())
                             {
                                 if (resGetExisting.GetResult() == null)
-                                    rc.SetError(3060202, MxError.Source.Data, @"wst cannot be created",
+                                    rc.SetError(3060302, MxError.Source.Data, @"wst cannot be created",
                                         MxMsgs.MxErrUnexpected);
                                 else
                                 {
                                     var wst = resGetExisting.GetResult().Id;
                                     if (wst == Guid.Empty)
-                                        rc.SetError(3060203, MxError.Source.Sys,
+                                        rc.SetError(3060303, MxError.Source.Sys,
                                             @"wst Default not found and cannot be created", MxMsgs.MxErrUnexpected);
                                     else
                                         rc.SetResult(wst);
@@ -124,7 +183,31 @@ namespace Gdpr.UI.WebApp.Data
                     }
                 }
             }
+            return rc;
+        }
 
+        private async Task<MxReturnCode<bool>> DeseedStdTermsConditions(GdprSeedRepo gdprSeedRepo)
+        {
+            MxReturnCode<bool> rc = new MxReturnCode<bool>($"MxIdentityDb.DeseedStdTermsCondition");
+
+            if (gdprSeedRepo == null)
+                rc.SetError(3060301, MxError.Source.Param, "gdprSeedRepo is null");
+            else
+            {
+                var resGetExisting = await gdprSeedRepo.GetWstAsync(_config["WST:Standard"]);
+                rc += resGetExisting;
+                if (rc.IsSuccess())
+                {
+                    if (resGetExisting.GetResult() == null)
+                        rc.SetResult(true);
+                    else
+                    {
+                        //delete resGetExisting.GetResult()
+                        rc.SetResult(true);
+                    }
+  
+                }
+            }
             return rc;
         }
 
@@ -133,7 +216,7 @@ namespace Gdpr.UI.WebApp.Data
             MxReturnCode<bool> rc = new MxReturnCode<bool>($"MxIdentityDb.SeedStdUrdRole(name={urdName ?? "[null]"})");
 
             if ((gdprSeedRepo == null) || (string.IsNullOrWhiteSpace(urdName)) || (gdprSeedRepo.GetStdGdprUrdCode(urdName) == UrdCodeStd.Undefined))
-                rc.SetError(3060301, MxError.Source.Param, $"gdprSeedRepo is null or urdName={urdName ?? "[null]"} is invalid");
+                rc.SetError(3060401, MxError.Source.Param, $"gdprSeedRepo is null or urdName={urdName ?? "[null]"} is invalid");
             else
             {
                 var resUrdExists = await gdprSeedRepo.IsExistStdUrdAsync(urdName);
@@ -154,7 +237,47 @@ namespace Gdpr.UI.WebApp.Data
                         {
                             var idres = await _roleManager.CreateAsync(new IdentityRole() { Name = identityRoleName });
                             if (idres.Succeeded)
-                                rc.SetError(3060302, MxError.Source.Sys, $"unable to create Identity Role {identityRoleName ?? "[null]"}");
+                                rc.SetError(3060402, MxError.Source.Sys, $"unable to create Identity Role {identityRoleName ?? "[null]"}");
+                            else
+                                rc.SetResult(true);
+                        }
+                    }
+                    if (rc.IsError(true))
+                    {
+                        await gdprSeedRepo.DeleteStdUrdAsync(urdName);
+                    }
+                }
+            }
+            return rc;
+        }
+
+        private async Task<MxReturnCode<bool>> DeseedStdUrdRole(GdprSeedRepo gdprSeedRepo, string urdName, Guid wstId)
+        {
+            MxReturnCode<bool> rc = new MxReturnCode<bool>($"MxIdentityDb.DeseedStdUrdRole(name={urdName ?? "[null]"})");
+
+            if ((gdprSeedRepo == null) || (string.IsNullOrWhiteSpace(urdName)) || (gdprSeedRepo.GetStdGdprUrdCode(urdName) == UrdCodeStd.Undefined))
+                rc.SetError(3060401, MxError.Source.Param, $"gdprSeedRepo is null or urdName={urdName ?? "[null]"} is invalid");
+            else
+            {
+                var resUrdExists = await gdprSeedRepo.IsExistStdUrdAsync(urdName);
+                rc += resUrdExists;
+                if (rc.IsSuccess())
+                {
+                    if (resUrdExists.GetResult() == false)
+                    {
+                        var resCreate = await gdprSeedRepo.CreateStdUrdAsync(urdName, wstId);
+                        rc += resCreate;
+                    }
+                    if (rc.IsSuccess())
+                    {
+                        var identityRoleName = gdprSeedRepo.XlatUrdNameToIdentityRoleName(urdName);
+                        if (await _roleManager.FindByNameAsync(identityRoleName) != null)
+                            rc.SetResult(true);
+                        else
+                        {
+                            var idres = await _roleManager.CreateAsync(new IdentityRole() { Name = identityRoleName });
+                            if (idres.Succeeded)
+                                rc.SetError(3060402, MxError.Source.Sys, $"unable to create Identity Role {identityRoleName ?? "[null]"}");
                             else
                                 rc.SetResult(true);
                         }

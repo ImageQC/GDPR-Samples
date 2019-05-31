@@ -64,29 +64,30 @@ Deploy to Azure
 3. Run EF from Package Manager Console with Gdpr.UI.CmdApp as default project to create the Identity tables
    >Add-Migration AzureCreate
    >Update-Database
-4. Set Gdpr.Data.Sql Properties - Target Platform Microsoft Azure SQL Database v12
-5. Gdpr.Data.Sql | Publish - Create/Save Profile for Azure
-6. Run AlterAfterCreateTables.sql on Azure Db using MSSMS
-7. Publish Gdpr.UI.WebApp
+4. Set Gdpr.UI.WebApp as startup project and rebuild
+5. Edit Gdpr.UI.CmdApp local.settings.json; change the connection string to local Db
+6. Set Gdpr.Data.Sql Properties - Target Platform Microsoft Azure SQL Database v12
+7. Gdpr.Data.Sql | Publish - Create/Save Profile for Azure
+8. Run AlterAfterCreateTables.sql on Azure Db using MSSMS
+9. Publish Gdpr.UI.WebApp
 
 Testing on Azure
 ----------------
 
 1. Edit Gdpr.Domain.Tests ConfigSettings.cs; add AzureDbConnectionStr with value of Azure database connection string 
-2. Edit Gdpr.Domain.Tests RepositoryBaseFixture.cs; change LocalDbConnectionStr to AzureDbConnectionStr
-3. Edit Gdpr.Domain.Tests RepositoryBaseFixture.cs; change LocalDbConnectionStr to AzureDbConnectionStr
-4. Run Tests
+2. Set Gdpr.Data.Sql Properties - Target Platform Microsoft Azure SQL V12
+3. Run Tests
 
 Before checking-in changes
 --------------------------
 
-1. Edit Gdpr.Domain.Tests RepositoryBaseFixture.cs; change AzureDbConnectionStr to LocalDbConnectionStr
-2. Edit Gdpr.Domain.Tests RepositoryBaseFixture.cs; change AzureDbConnectionStr to LocalDbConnectionStr
+1. Edit Gdpr.Domain.Tests ConfigSettings.cs; change AzureDbConnectionStr to LocalDbConnectionStr
 3. Edit Gdpr.Domain.Tests ConfigSettings.cs; replace database user name and password to XXX and YYY
 4. Set Gdpr.Data.Sql Properties - Target Platform Microsoft SQL 2016 Database
 5. Run Tests
-6. Gdpr.UI.WebApp appsettings.json - remove database username and password
-7. Set Package, Assembly and File Versions - see MxVersion numbering in MyDevNotes
+6. Set Gdpr.Data.Sql Properties - Target Platform Microsoft Azure SQL Database v12
+7. Gdpr.UI.WebApp appsettings.json - remove database username and password
+8. Set Package, Assembly and File Versions - see MxVersion numbering in MyDevNotes
 
 
 

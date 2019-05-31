@@ -75,7 +75,7 @@ namespace Gdpr.Domain
 
             var urdCode = _adminRepo.GetStdGdprUrdCode(urdName);
             if (urdCode == UrdCodeStd.Undefined)
-                rc.SetError(1050201, MxError.Source.Param, $"name={urdName ?? "[null]"} is invalid");
+                rc.SetError(1050301, MxError.Source.Param, $"name={urdName ?? "[null]"} is invalid");
             else
             {
                 rc += await _adminRepo.DeleteUrdAsync(urdName);
